@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Jeff Dickey",
   "dependencies": {
+    "sort-pjson": "^1.0.0",
     "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },

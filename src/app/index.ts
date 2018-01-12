@@ -2,6 +2,9 @@ import * as path from 'path'
 import * as Generator from 'yeoman-generator'
 import yosay = require('yosay')
 
+const sortPjson = require('sort-pjson')
+const fixpack = require('fixpack')
+
 function stringToArray(s: string) {
   const keywords: string[] = [];
 
@@ -100,7 +103,7 @@ class App extends Generator {
 
   writing() {
     const pjson: any = {
-      name: this.args.appname,
+      name: this.answers.appname,
       description: this.answers.description,
       version: this.answers.version,
       author: this.answers.author,
@@ -124,7 +127,8 @@ class App extends Generator {
       pjson.devDependencies['@dxcli/dev-semantic-release'] = '^0.0.2'
       pjson.scripts.commitmsg = 'dxcli-dev-commitmsg'
     }
-    this.fs.writeJSON(this.destinationPath('./package.json'), pjson)
+    fixpack(this.destinationPath('./package.json'), require('fixpack/config.json'))
+    this.fs.writeJSON(this.destinationPath('./package.json'), sortPjson(pjson))
     this.fs.copy(this.templatePath('eslintrc'), this.destinationPath('.eslintrc'))
     this.fs.copy(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'))
     this.fs.copyTpl(
