@@ -1,0 +1,31 @@
+{
+  "name": "generator-dxcli",
+  "description": "dxcli yeoman generator",
+  "version": "0.0.0",
+  "author": "Jeff Dickey",
+  "dependencies": {
+    "yeoman-generator": "^2.0.1",
+    "yosay": "^2.0.1"
+  },
+  "devDependencies": {
+    "@dxcli/dev-lint": "^0.0.1",
+    "@dxcli/dev-semantic-release": "^0.0.2",
+    "@types/yeoman-generator": "^2.0.1",
+    "@types/yosay": "^0.0.29",
+    "husky": "^0.14.3",
+    "typescript": "^2.6.2"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "dxcli",
+    "yeoman-generator"
+  ],
+  "license": "MIT",
+  "main": "generators/index.js",
+  "repository": "dxcli/generator-dxcli",
+  "scripts": {
+    "prepare": "tsc"
+  }
+}
