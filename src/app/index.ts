@@ -32,37 +32,39 @@ class App extends Generator {
       'Welcome to the sweet generator!'
     ))
 
+    const pjson = this.fs.readJSON('package.json', {})
     const gitName = this.user.git.name()
-    const githubUsername = await this.user.github.username()//.catch(() => '')
+    const githubUsername = await this.user.github.username()
     this.answers = await this.prompt([
       {
         type: 'input',
         name: 'appname',
         message: 'app name',
-        default: this.determineAppname(),
+        default: pjson.name || this.determineAppname(),
       },
       {
         type: 'input',
         name: 'description',
         message: 'description',
+        default: pjson.description,
       },
       {
         type: 'input',
         name: 'author',
         message: 'author',
-        default: gitName,
+        default: pjson.author || gitName,
       },
       {
         type: 'input',
         name: 'version',
         message: 'version',
-        default: '0.0.0',
+        default: pjson.version || '0.0.0',
       },
       {
         type: 'input',
         name: 'license',
         message: 'license',
-        default: 'MIT',
+        default: pjson.license || 'MIT',
       },
     ])
     this.answers = {
@@ -72,25 +74,25 @@ class App extends Generator {
           type: 'input',
           name: 'repository',
           message: 'repository',
-          default: `${githubUsername}/${this.answers.appname}`,
+          default: pjson.repository || `${githubUsername}/${this.answers.appname}`,
         },
         {
           type: 'string',
           name: 'files',
           message: 'npm files to pack',
-          default: '/lib',
+          default: pjson.files ? pjson.files.join(',') : '/lib',
         },
         {
           type: 'confirm',
           name: 'typescript',
           message: 'use typescript?',
-          default: true,
+          default: pjson.devDependencies ? !!pjson.devDependencies.typescript : true,
         },
         {
           type: 'confirm',
           name: 'semantic_release',
           message: 'use semantic release?',
-          default: true,
+          default: pjson.devDependencies ? !!pjson.devDependencies['@dxcli/dev-semantic-release'] : true,
         },
       ])
     }
