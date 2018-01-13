@@ -1,3 +1,11 @@
+<a name="1.4.1"></a>
+## [1.4.1](https://github.com/dxcli/generator-dxcli/compare/887a00083ed5347fa14fd9d2a750e5bf2611b27e...v1.4.1) (2018-01-13)
+
+
+### Bug Fixes
+
+* stop using npx ([323c1ef](https://github.com/dxcli/generator-dxcli/commit/323c1ef))
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/dxcli/generator-dxcli/compare/5aeaaf95e95744742c219e9389a192d07d9b26e2...v1.4.0) (2018-01-13)
 
