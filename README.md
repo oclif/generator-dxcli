@@ -1,5 +1,5 @@
 generator-dxcli
-=================
+===============
 
 [![Version](https://img.shields.io/npm/v/generator-dxcli.svg)](https://npmjs.org/package/generator-dxcli)
 [![CircleCI](https://circleci.com/gh/dxcli/generator-dxcli/tree/master.svg?style=svg)](https://circleci.com/gh/dxcli/generator-dxcli/tree/master)
