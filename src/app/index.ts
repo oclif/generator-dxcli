@@ -24,7 +24,9 @@ function stringToArray(s: string) {
 class App extends Generator {
   args: {[k: string]: string}
   type: 'base'
+  path: string
   pjson: any
+  fromScratch: boolean
   answers: {
     appname: string
     description: string
@@ -47,7 +49,9 @@ class App extends Generator {
 
     // const types = ['base']
     this.argument('type', {type: String, required: false})
+    this.argument('path', {type: String, required: false})
     this.type = opts.type || this.args.type
+    this.path = opts.path || this.args.path
     if (!this.type) throw new Error('Usage: yo dxcli (single|multi|plugin|base)')
   }
 
@@ -56,8 +60,11 @@ class App extends Generator {
       `Time to build a dxcli ${this.type}!`
     ))
 
+    if (this.path) {
+      this.destinationRoot(path.resolve(this.path))
+    }
     this.pjson = this.fs.readJSON('package.json', {})
-    const fromScratch = Object.keys(this.pjson).length === 0
+    this.fromScratch = Object.keys(this.pjson).length === 0
     this.pjson.name = this.pjson.name || this.determineAppname().replace(/ /, '-')
     this.pjson.version = this.pjson.version || '0.0.0'
     this.pjson.license = this.pjson.license || 'MIT'
@@ -77,7 +84,7 @@ class App extends Generator {
         name: 'appname',
         message: 'npm package name',
         default: this.pjson.name,
-        when: fromScratch,
+        when: this.fromScratch,
       },
       {
         type: 'input',
@@ -148,9 +155,9 @@ class App extends Generator {
         name: 'options',
         message: 'components to include',
         choices: [
-          {name: 'typescript', checked: fromScratch ? true : !!this.pjson.devDependencies.typescript},
-          {name: 'semantic-release', checked: fromScratch ? true : !!this.pjson.devDependencies['@dxcli/dev-semantic-release']},
-          {name: 'mocha', checked: fromScratch ? true : !!this.pjson.devDependencies.mocha},
+          {name: 'typescript', checked: this.fromScratch ? true : !!this.pjson.devDependencies.typescript},
+          {name: 'semantic-release', checked: this.fromScratch ? true : !!this.pjson.devDependencies['@dxcli/dev-semantic-release']},
+          {name: 'mocha', checked: this.fromScratch ? true : !!this.pjson.devDependencies.mocha},
         ],
         filter: ((arr: string[]) => _.keyBy(arr)) as any,
       },
@@ -193,8 +200,8 @@ class App extends Generator {
       if (!lint.find((c: string) => c.startsWith('commitlint'))) lint.push('commitlint --from master')
       if (!test.find((c: string) => c.startsWith('commitlint'))) test.push('commitlint --from master')
     }
-    if (this.answers.options.mocha) {
-      if (!test.find((c: string) => c.startsWith('nyc mocha'))) test.push('nyc mocha')
+    if (this.answers.options.mocha && !test.find((c: string) => c.startsWith('nyc mocha'))) {
+      test.push('nyc mocha')
     }
     if (this.fs.exists(this.destinationPath('./package.json'))) {
       fixpack(this.destinationPath('./package.json'), require('fixpack/config.json'))
@@ -212,6 +219,7 @@ class App extends Generator {
   }
 
   install() {
+    if (!this.fs.exists('.git')) this.spawnCommandSync('git', ['init'])
     const dependencies: string[] = []
     const devDependencies = [
       'husky',
