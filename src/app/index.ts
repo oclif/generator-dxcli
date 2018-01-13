@@ -274,9 +274,7 @@ class App extends Generator {
   }
 
   install() {
-    const dependencies = [
-      'cli-ux'
-    ]
+    const dependencies: string[] = []
     const devDependencies = [
       '@dxcli/dev',
       'husky',
