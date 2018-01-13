@@ -1,3 +1,17 @@
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/dxcli/generator-dxcli/compare/34c1691e03bb5d89038c7b37d810578e2d5685f3...v1.3.0) (2018-01-13)
+
+
+### Bug Fixes
+
+* install yeoman ([3f5fba9](https://github.com/dxcli/generator-dxcli/commit/3f5fba9))
+
+
+### Features
+
+* allow creating new directories ([97df4fe](https://github.com/dxcli/generator-dxcli/commit/97df4fe))
+* mocha ([7a006f6](https://github.com/dxcli/generator-dxcli/commit/7a006f6))
+
 <a name="1.2.3"></a>
 ## [1.2.3](https://github.com/dxcli/generator-dxcli/compare/e4584db620e0c12dbccc6568778e03ad38c7e5e9...v1.2.3) (2018-01-13)
 
