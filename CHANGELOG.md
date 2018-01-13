@@ -1,3 +1,11 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/dxcli/generator-dxcli/compare/5aeaaf95e95744742c219e9389a192d07d9b26e2...v1.4.0) (2018-01-13)
+
+
+### Features
+
+* added precommit ([887a000](https://github.com/dxcli/generator-dxcli/commit/887a000))
+
 <a name="1.3.3"></a>
 ## [1.3.3](https://github.com/dxcli/generator-dxcli/compare/b5576a7ff944c09d3214e4a67620bbd5ec825b7a...v1.3.3) (2018-01-13)
 
