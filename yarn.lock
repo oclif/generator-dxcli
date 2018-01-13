@@ -126,9 +126,9 @@
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@dxcli/dev-nyc-config/-/dev-nyc-config-0.0.3.tgz#3ff59cf561663710f025a41f64d608d2977a3d3b"
 
-"@dxcli/dev-semantic-release@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@dxcli/dev-semantic-release/-/dev-semantic-release-0.0.2.tgz#ffaf09f9040450723e3dcddb7cac4e53c38e7fcc"
+"@dxcli/dev-semantic-release@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@dxcli/dev-semantic-release/-/dev-semantic-release-0.0.3.tgz#8b6a2f9874b93fe43f432eb4eee5775d683494ee"
   dependencies:
     "@dxcli/dev-commitmsg" "^0.0.3"
     "@semantic-release/changelog" "^1.0.0"
@@ -137,22 +137,40 @@
     "@semantic-release/npm" "^2.6.1"
     semantic-release "^12.2.0"
 
-"@dxcli/dev-tslint@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@dxcli/dev-tslint/-/dev-tslint-0.0.5.tgz#4ee334cf67d4928313ada1abed521448ae2b4c12"
+"@dxcli/dev-test@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@dxcli/dev-test/-/dev-test-0.0.1.tgz#8440c7fec40ccf7ad5dc21d5224be09ca42a4cb4"
+  dependencies:
+    "@dxcli/dev-nyc-config" "^0.0.3"
+    "@types/ansi-styles" "^2.0.30"
+    "@types/chai" "^4.1.0"
+    "@types/lodash" "^4.14.92"
+    "@types/mocha" "^2.2.46"
+    "@types/strip-ansi" "^3.0.0"
+    chai "^4.1.2"
+    lodash "^4.17.4"
+    mocha-junit-reporter "^1.15.0"
+    std-mocks "^1.0.1"
+    strip-ansi "^4.0.0"
+    ts-node "^4.1.0"
+
+"@dxcli/dev-tslint@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@dxcli/dev-tslint/-/dev-tslint-0.0.6.tgz#5d307afcaff763a1baf84ed4cdd9937f709b913f"
   dependencies:
     tslint "^5.9.1"
     tslint-xo "^0.4.0"
 
-"@dxcli/dev@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@dxcli/dev/-/dev-0.0.3.tgz#aa3891810a964f822d42efebfd8be103d556884d"
+"@dxcli/dev@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@dxcli/dev/-/dev-1.0.0.tgz#5cfab36108fcfb44f7a94ad5bca06328f909aec0"
   dependencies:
     cli-ux "^2.0.21"
     concurrently "^3.5.1"
     debug "^3.1.0"
     execa "^0.9.0"
     get-stream "^3.0.0"
+    lodash "^4.17.4"
     read-pkg-up "^3.0.0"
     supports-color "^5.1.0"
 
@@ -377,6 +395,10 @@
     "@types/rx-lite-testing" "*"
     "@types/rx-lite-time" "*"
     "@types/rx-lite-virtualtime" "*"
+
+"@types/strip-ansi@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/strip-ansi/-/strip-ansi-3.0.0.tgz#9b63d453a6b54aa849182207711a08be8eea48ae"
 
 "@types/strip-bom@^3.0.0":
   version "3.0.0"
@@ -959,6 +981,10 @@ chardet@^0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.4.2.tgz#b5473b33dc97c424e5d98dc87d55d4d8a29c8bf2"
 
+charenc@~0.0.1:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
+
 check-error@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/check-error/-/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
@@ -1344,6 +1370,10 @@ cross-spawn@^5.0.1, cross-spawn@^5.1.0:
     lru-cache "^4.0.1"
     shebang-command "^1.2.0"
     which "^1.2.9"
+
+crypt@~0.0.1:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/crypt/-/crypt-0.0.2.tgz#88d7ff7ec0dfb86f713dc87bbb42d044d3e6c41b"
 
 cryptiles@3.x.x:
   version "3.1.2"
@@ -2789,7 +2819,7 @@ is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
 
-is-buffer@^1.1.5:
+is-buffer@^1.1.5, is-buffer@~1.1.1:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
 
@@ -3469,6 +3499,14 @@ md5-o-matic@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/md5-o-matic/-/md5-o-matic-0.1.1.tgz#822bccd65e117c514fab176b25945d54100a03c3"
 
+md5@^2.1.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/md5/-/md5-2.2.1.tgz#53ab38d5fe3c8891ba465329ea23fac0540126f9"
+  dependencies:
+    charenc "~0.0.1"
+    crypt "~0.0.1"
+    is-buffer "~1.1.1"
+
 mem-fs-editor@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/mem-fs-editor/-/mem-fs-editor-3.0.2.tgz#dd0a6eaf2bb8a6b37740067aa549eb530105af9f"
@@ -3606,11 +3644,20 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1:
+mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+mocha-junit-reporter@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/mocha-junit-reporter/-/mocha-junit-reporter-1.15.0.tgz#309f4b7a20fcda26d0ad69c9b7d0808d772302c2"
+  dependencies:
+    debug "^2.2.0"
+    md5 "^2.1.0"
+    mkdirp "~0.5.1"
+    xml "^1.0.0"
 
 mocha@^4.1.0:
   version "4.1.0"
@@ -4899,6 +4946,12 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
+std-mocks@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/std-mocks/-/std-mocks-1.0.1.tgz#d3388876d7beeba3c70fbd8e2bcaf46eb07d79fe"
+  dependencies:
+    lodash "^4.11.1"
+
 stream-combiner2@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/stream-combiner2/-/stream-combiner2-1.1.1.tgz#fb4d8a1420ea362764e21ad4780397bebcb41cbe"
@@ -5582,6 +5635,10 @@ xdg-basedir@^2.0.0:
 xdg-basedir@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
+
+xml@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
 
 xtend@~4.0.0, xtend@~4.0.1:
   version "4.0.1"

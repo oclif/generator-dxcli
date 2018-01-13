@@ -283,9 +283,9 @@ class App extends Generator {
     ]
     if (this.mocha) {
       devDependencies.push(
+        '@dxcli/dev-test',
         'mocha',
         'nyc',
-        'chai',
       )
     }
     if (this.ts) {
@@ -293,15 +293,11 @@ class App extends Generator {
         'del-cli',
         'typescript',
         '@dxcli/dev-tslint',
-        '@types/ansi-styles',
         '@types/node',
       )
       if (this.mocha) {
         devDependencies.push(
           'ts-node',
-          '@types/mocha',
-          '@types/chai',
-          '@dxcli/dev-nyc-config',
         )
       }
     }

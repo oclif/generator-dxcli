@@ -1,4 +1,5 @@
-import {expect} from 'chai'
+import {describe, expect} from '@dxcli/dev-test'
+
 import {add} from '../src'
 
 describe('add', () => {

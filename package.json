@@ -14,11 +14,12 @@
     "yosay": "^2.0.1"
   },
   "devDependencies": {
-    "@dxcli/dev": "^0.0.3",
+    "@dxcli/dev": "^1.0.0",
     "@dxcli/dev-lint": "^0.0.2",
     "@dxcli/dev-nyc-config": "^0.0.3",
-    "@dxcli/dev-semantic-release": "^0.0.2",
-    "@dxcli/dev-tslint": "^0.0.5",
+    "@dxcli/dev-semantic-release": "^0.0.3",
+    "@dxcli/dev-test": "^0.0.1",
+    "@dxcli/dev-tslint": "^0.0.6",
     "@types/ansi-styles": "^2.0.30",
     "@types/chai": "^4.1.0",
     "@types/lodash": "^4.14.92",
@@ -46,7 +47,7 @@
         "tsc",
         "tslint -p .",
         "commitlint --from master",
-        "yo dxcli basic tmp/test-basic --defaults && cd tmp/test-basic && git add . && git commit -m 'chore: init' && yarn test && yarn run lint"
+        "yo dxcli base tmp/test-base --defaults && cd tmp/test-base && git add . && git commit -m 'chore: init' && yarn test && yarn run lint"
       ],
       "lint": [
         "eslint .",
@@ -74,6 +75,6 @@
     "commitmsg": "dxcli-dev-commitmsg",
     "lint": "dxcli-dev lint",
     "prepare": "del-cli generators && tsc",
-    "test": "rm -rf tmp/test-basic && tsc && dxcli-dev test"
+    "test": "rm -rf tmp/test-base && tsc && dxcli-dev test"
   }
 }
