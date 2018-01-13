@@ -1,3 +1,6 @@
 {
-  "extends": "dxcli"
+  "extends": "dxcli",
+  "rules": {
+    "node/no-unpublished-require": 0
+  }
 }
