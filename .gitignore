@@ -1,5 +1,5 @@
 /coverage
-/lib
+/generators
 /node_modules
 /tmp
 /.nyc_output

@@ -201,7 +201,7 @@ class App extends Generator {
   }
 
   writing() {
-    this.sourceRoot(path.join(__dirname, '../templates'))
+    this.sourceRoot(path.join(__dirname, '../../templates'))
     const {test, lint} = this.pjson.dxcli.workflows
     if (!lint.find((c: string) => c.startsWith('eslint'))) lint.push('eslint .')
     if (!test.find((c: string) => c.startsWith('eslint'))) test.push('eslint .')
@@ -211,11 +211,14 @@ class App extends Generator {
     if (this.ts) {
       this.fs.copyTpl(this.templatePath('tslint.json'), this.destinationPath('tslint.json'), this)
       this.fs.copyTpl(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'), this)
-      this.pjson.scripts.prepare = this.pjson.scripts.prepare || 'tsc'
+      this.pjson.scripts.prepare = this.pjson.scripts.prepare || 'del-cli lib && tsc'
       if (!lint.find((c: string) => c.startsWith('tsc'))) lint.push('tsc')
       if (!test.find((c: string) => c.startsWith('tsc'))) test.push('tsc')
       if (!lint.find((c: string) => c.startsWith('tslint'))) lint.push('tslint -p .')
       if (!test.find((c: string) => c.startsWith('tslint'))) test.push('tslint -p .')
+      if (this.mocha) {
+        this.fs.copyTpl(this.templatePath('test/tsconfig.json'), this.destinationPath('test/tsconfig.json'), this)
+      }
     }
     if (this.semantic_release) {
       this.pjson.scripts.commitmsg = this.pjson.scripts.commitmsg || 'dxcli-dev-commitmsg'
@@ -223,9 +226,9 @@ class App extends Generator {
       if (!test.find((c: string) => c.startsWith('commitlint'))) test.push('commitlint --from master')
     }
     if (this.mocha) {
-      if (!test.find((c: string) => c.startsWith('nyc mocha'))) test.push('nyc mocha "test/**/*.ts"')
+      if (!test.find((c: string) => c.startsWith('mocha'))) test.push('mocha "test/**/*.ts"')
       if (this.fromScratch) {
-        this.fs.copyTpl(this.templatePath(`test/helpers/init.${this._ext}`), this.destinationPath(`test/helpers/init.${this._ext}`), this)
+        this.fs.copyTpl(this.templatePath('test/helpers/init.js'), this.destinationPath('test/helpers/init.js'), this)
         this.fs.copyTpl(this.templatePath('test/mocha.opts'), this.destinationPath('test/mocha.opts'), this)
         this.fs.copyTpl(this.templatePath(`test/index.test.${this._ext}`), this.destinationPath(`test/index.test.${this._ext}`), this)
       }
@@ -288,10 +291,11 @@ class App extends Generator {
     }
     if (this.ts) {
       devDependencies.push(
+        'del-cli',
         'typescript',
         '@dxcli/dev-tslint',
         '@types/ansi-styles',
-        '@types/node'
+        '@types/node',
       )
       if (this.mocha) {
         devDependencies.push(
