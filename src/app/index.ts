@@ -1,5 +1,5 @@
-import * as _ from 'lodash'
 import * as path from 'path'
+import _ from 'ts-lodash'
 import * as Generator from 'yeoman-generator'
 import yosay = require('yosay')
 
@@ -77,54 +77,63 @@ class App extends Generator {
         name: 'appname',
         message: 'npm package name',
         default: this.pjson.name,
+        when: fromScratch,
       },
       {
         type: 'input',
         name: 'description',
         message: 'description',
         default: this.pjson.description,
+        when: !this.pjson.description,
       },
       {
         type: 'input',
         name: 'author',
         message: 'author',
         default: this.pjson.author,
+        when: !this.pjson.author,
       },
       {
         type: 'input',
         name: 'version',
         message: 'version',
         default: this.pjson.version,
+        when: !this.pjson.version,
       },
       {
         type: 'input',
         name: 'license',
         message: 'license',
         default: this.pjson.license,
+        when: !this.pjson.license,
       },
       {
         type: 'input',
         name: 'engines.node',
         message: 'node version supported',
         default: this.pjson.engines.node,
+        when: !this.pjson.engines.node,
       },
       {
         type: 'input',
         name: 'github.user',
         message: 'github owner of repository (https://github.com/OWNER/repo)',
         default: this.pjson.repository ? this.pjson.repository.split('/').slice(0, -1).pop() : await this.user.github.username(),
+        when: !this.pjson.repository,
       },
       {
         type: 'input',
         name: 'github.repo',
         message: 'github name of repository (https://github.com/owner/REPO)',
         default: (answers: any) => this.pjson.repository ? this.pjson.repository.split('/').pop() : answers.appname,
+        when: !this.pjson.repository,
       },
       {
         type: 'input',
         name: 'repository',
         message: 'repository',
         default: (answers: any) => this.pjson.repository ? this.pjson.repository : `${answers.github.user}/${answers.github.repo}`,
+        when: !this.pjson.repository,
       },
       {
         type: 'string',
@@ -132,11 +141,12 @@ class App extends Generator {
         message: 'npm files to pack',
         default: this.pjson.files ? this.pjson.files.join(',') : '/lib',
         filter: stringToArray as any,
+        when: !this.pjson.repository,
       },
       {
         type: 'checkbox',
         name: 'options',
-        message: 'use typescript?',
+        message: 'components to include',
         choices: [
           {name: 'typescript', checked: fromScratch ? true : !!this.pjson.devDependencies.typescript},
           {name: 'semantic-release', checked: fromScratch ? true : !!this.pjson.devDependencies['@dxcli/dev-semantic-release']},
@@ -145,25 +155,29 @@ class App extends Generator {
         filter: _.keyBy as any
       },
     ]) as any
+    if (!this.answers.github) {
+      const [user, repo] = this.pjson.repository.split('/').slice(-2)
+      this.answers.github = {user, repo}
+    }
     debug(this.answers)
 
-    this.pjson.name = this.answers.appname
-    this.pjson.description = this.answers.description
-    this.pjson.version = this.answers.version
-    this.pjson.engines.node = this.answers.engines.node
-    this.pjson.author = this.answers.author
-    this.pjson.files = this.answers.files
-    this.pjson.license = this.answers.license
-    this.pjson.repository = this.answers.repository
-    if (!this.pjson.dxcli.workflows.lint.find((c: string) => c.startsWith('eslint'))) this.pjson.dxcli.workflows.lint.push('eslint .')
-    if (!this.pjson.dxcli.workflows.test.find((c: string) => c.startsWith('eslint'))) this.pjson.dxcli.workflows.lint.push('eslint .')
-    this.pjson.scripts.lint = this.pjson.scripts.lint || 'dxcli-dev lint'
-    this.pjson.scripts.test = this.pjson.scripts.test || 'dxcli-dev test'
+    this.pjson.name = this.answers.appname || this.pjson.name
+    this.pjson.description = this.answers.description || this.pjson.description
+    this.pjson.version = this.answers.version || this.pjson.version
+    this.pjson.engines.node = this.answers.engines ? this.answers.engines.node : this.pjson.engines.node
+    this.pjson.author = this.answers.author || this.pjson.author
+    this.pjson.files = this.answers.files || this.pjson.files
+    this.pjson.license = this.answers.license || this.pjson.license
+    this.pjson.repository = this.answers.repository || this.pjson.repository
   }
 
   writing() {
     this.sourceRoot(path.join(__dirname, '../../templates'))
     const {test, lint} = this.pjson.dxcli.workflows
+    if (!lint.find((c: string) => c.startsWith('eslint'))) lint.push('eslint .')
+    if (!test.find((c: string) => c.startsWith('eslint'))) test.push('eslint .')
+    this.pjson.scripts.lint = this.pjson.scripts.lint || 'dxcli-dev lint'
+    this.pjson.scripts.test = this.pjson.scripts.test || 'dxcli-dev test'
 
     this.yarnInstall(['husky', 'eslint-config-dxcli', 'eslint'], {dev: true})
     if (this.answers.options.mocha) {
@@ -171,7 +185,8 @@ class App extends Generator {
     }
     if (this.answers.options.typescript) {
       this.yarnInstall(['typescript', '@dxcli/dev-tslint'], {dev: true})
-      this.fs.copy(this.templatePath('tslint.json'), this.destinationPath('tslint.json'))
+      this.fs.copyTpl(this.templatePath('tslint.json'), this.destinationPath('tslint.json'), this)
+      this.fs.copyTpl(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'), this)
       this.pjson.scripts.prepare = this.pjson.scripts.prepare || 'tsc'
       if (!lint.find((c: string) => c.startsWith('tsc'))) lint.push('tsc')
       if (!test.find((c: string) => c.startsWith('tsc'))) test.push('tsc')

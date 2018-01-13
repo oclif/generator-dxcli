@@ -8,6 +8,7 @@
     "fixpack": "^2.3.1",
     "lodash": "^4.17.4",
     "sort-pjson": "^1.0.1",
+    "ts-lodash": "^4.0.11",
     "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },
@@ -19,22 +20,38 @@
     "@types/yeoman-generator": "^2.0.1",
     "@types/yosay": "^0.0.29",
     "ejs-lint": "^0.3.0",
+    "eslint": "^4.15.0",
+    "eslint-config-dxcli": "^1.1.1",
     "husky": "^0.14.3",
     "tslint": "^5.9.1",
     "typescript": "^2.6.2"
   },
+  "dxcli": {
+    "workflows": {
+      "test": [
+        "eslint ."
+      ],
+      "lint": [
+        "eslint ."
+      ]
+    }
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "files": [
-    "generators"
+    "/lib"
   ],
   "keywords": [
     "dxcli",
     "yeoman-generator"
   ],
   "license": "MIT",
-  "main": "generators/app/index.js",
+  "main": "lib/app/index.js",
   "repository": "dxcli/generator-dxcli",
   "scripts": {
-    "test": "echo NO TESTS",
-    "prepare": "tsc"
+    "lint": "dxcli-dev lint",
+    "prepare": "tsc",
+    "test": "echo NO TESTS"
   }
 }

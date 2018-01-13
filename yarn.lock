@@ -1280,6 +1280,14 @@ eslint-config-dxcli@^1.0.1:
     eslint-plugin-node "^5.2.1"
     eslint-plugin-unicorn "^3.0.1"
 
+eslint-config-dxcli@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-dxcli/-/eslint-config-dxcli-1.1.1.tgz#73e13cbf75c2d08fd5b35a846cfe93a7605204d3"
+  dependencies:
+    eslint-config-xo-space "^0.17.0"
+    eslint-plugin-node "^5.2.1"
+    eslint-plugin-unicorn "^3.0.1"
+
 eslint-config-xo-space@^0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/eslint-config-xo-space/-/eslint-config-xo-space-0.17.0.tgz#b712feb4f4547e28001900cbeecc9c2f2f456af2"
@@ -3993,6 +4001,12 @@ trim-newlines@^1.0.0:
 trim-off-newlines@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-off-newlines/-/trim-off-newlines-1.0.1.tgz#9f9ba9d9efa8764c387698bcbfeb2c848f11adb3"
+
+ts-lodash@^4.0.11:
+  version "4.0.11"
+  resolved "https://registry.yarnpkg.com/ts-lodash/-/ts-lodash-4.0.11.tgz#f668e2ad4b6cb3bcbeceb894cf0a8cde48b3cd85"
+  dependencies:
+    lodash "^4.17.4"
 
 tslib@^1.8.0, tslib@^1.8.1:
   version "1.8.1"
