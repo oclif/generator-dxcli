@@ -67,7 +67,7 @@ class App extends Generator {
 
   async prompting() {
     this.log(yosay(
-      `Time to build a dxcli ${this.type}!`
+      `Time to build a dxcli ${this.type}! Version: ${require('../../package.json').version}`
     ))
 
     if (this.path) {
