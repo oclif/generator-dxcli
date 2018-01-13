@@ -21,7 +21,7 @@ if [[ "$CLI_ENGINE_GREENKEEPER_BRANCH" == 1 ]]; then
   greenkeeper-lockfile-upload
 fi
 
-NYC="npx nyc --nycrc-path node_modules/@dxcli/dev-nyc-config/.nycrc"
+NYC="./node_modules/.bin/nyc --nycrc-path node_modules/@dxcli/dev-nyc-config/.nycrc"
 mkdir -p reports
 MOCHA_FILE="reports/mocha.xml" \
   DXCLI_MOCHA_OPTS="--reporter mocha-junit-reporter" \
