@@ -29,10 +29,16 @@
   "dxcli": {
     "workflows": {
       "test": [
-        "eslint ."
+        "eslint .",
+        "tsc",
+        "tslint -p .",
+        "commitlint --from master"
       ],
       "lint": [
-        "eslint ."
+        "eslint .",
+        "tsc",
+        "tslint -p .",
+        "commitlint --from master"
       ]
     }
   },
@@ -50,6 +56,7 @@
   "main": "lib/app/index.js",
   "repository": "dxcli/generator-dxcli",
   "scripts": {
+    "commitmsg": "dxcli-dev-commitmsg",
     "lint": "dxcli-dev lint",
     "prepare": "tsc",
     "test": "echo NO TESTS"
