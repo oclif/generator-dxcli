@@ -1,3 +1,6 @@
 /coverage
-/generators
+/lib
 /node_modules
+
+*-error.log
+*-debug.log
