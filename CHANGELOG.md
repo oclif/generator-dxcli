@@ -1,3 +1,16 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/dxcli/generator-dxcli/compare/ccd8f7ffd567605fa6586d7fda5cb66dfae56045...v1.1.0) (2018-01-13)
+
+
+### Bug Fixes
+
+* improve basic generator ([bda8321](https://github.com/dxcli/generator-dxcli/commit/bda8321))
+
+
+### Features
+
+* added basic type ([b684f55](https://github.com/dxcli/generator-dxcli/commit/b684f55))
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/dxcli/generator-dxcli/compare/8b1589e212a89b3a99695ce46da45c129d8ecd08...v1.0.1) (2018-01-12)
 
