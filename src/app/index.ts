@@ -310,8 +310,8 @@ class App extends Generator {
     if (this.semantic_release) {
       devDependencies.push('@dxcli/dev-semantic-release')
     }
-    if (dependencies.length) this.yarnInstall(dependencies)
     if (devDependencies.length) this.yarnInstall(devDependencies, {dev: true})
+    if (dependencies.length) this.yarnInstall(dependencies)
   }
 }
 
