@@ -1,0 +1,3 @@
+--require test/helpers/init.<%= _ext %>
+<%= ts ? '--require ts-node/register\n--require source-map-support/register\n--watch-extensions ts' : '' _%>
+--recursive
