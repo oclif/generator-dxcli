@@ -18,7 +18,7 @@ fi
 yarn install $CLI_ENGINE_UTIL_YARN_ARGS
 
 # fix for yo
-mkdir /root/.config/configstore
+mkdir -p /root/.config/configstore
 chmod g+rwx /root /root/.config /root/.config/configstore
 
 if [[ "$CLI_ENGINE_GREENKEEPER_BRANCH" == 1 ]]; then
