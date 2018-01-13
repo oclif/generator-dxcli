@@ -1,3 +1,11 @@
+<a name="1.4.2"></a>
+## [1.4.2](https://github.com/dxcli/generator-dxcli/compare/323c1ef1e36c6d4950e77027e6297cb54facf3c2...v1.4.2) (2018-01-13)
+
+
+### Bug Fixes
+
+* fix linting ([573cabe](https://github.com/dxcli/generator-dxcli/commit/573cabe))
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/dxcli/generator-dxcli/compare/887a00083ed5347fa14fd9d2a750e5bf2611b27e...v1.4.1) (2018-01-13)
 
