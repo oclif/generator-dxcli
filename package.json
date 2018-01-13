@@ -68,7 +68,7 @@
     "yeoman-generator"
   ],
   "license": "MIT",
-  "main": "lib/app/index.js",
+  "main": "generators/app/index.js",
   "repository": "dxcli/generator-dxcli",
   "scripts": {
     "commitmsg": "dxcli-dev-commitmsg",
