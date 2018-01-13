@@ -1,3 +1,11 @@
+<a name="1.3.2"></a>
+## [1.3.2](https://github.com/dxcli/generator-dxcli/compare/bc904a93f1e23d4c6cc64963eed691c88bcb2743...v1.3.2) (2018-01-13)
+
+
+### Bug Fixes
+
+* fix files ([b5576a7](https://github.com/dxcli/generator-dxcli/commit/b5576a7))
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://github.com/dxcli/generator-dxcli/compare/a28b9ae7299c2256bf4ccdf4bab4d117ba3ce954...v1.3.1) (2018-01-13)
 
