@@ -1,3 +1,11 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/dxcli/generator-dxcli/compare/bda832177847fa0b8b3c471d605dae93eaaf7df7...v1.1.1) (2018-01-13)
+
+
+### Bug Fixes
+
+* consolidate install steps ([1903ccd](https://github.com/dxcli/generator-dxcli/commit/1903ccd))
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/dxcli/generator-dxcli/compare/ccd8f7ffd567605fa6586d7fda5cb66dfae56045...v1.1.0) (2018-01-13)
 
