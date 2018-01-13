@@ -61,7 +61,7 @@
   },
   "files": [
     "/templates",
-    "/generator"
+    "/generators"
   ],
   "keywords": [
     "dxcli",
