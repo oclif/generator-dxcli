@@ -34,6 +34,7 @@
   "main": "generators/app/index.js",
   "repository": "dxcli/generator-dxcli",
   "scripts": {
+    "test": "echo NO TESTS",
     "prepare": "tsc"
   }
 }

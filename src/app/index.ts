@@ -165,7 +165,7 @@ class App extends Generator {
     this.sourceRoot(path.join(__dirname, '../../templates'))
     const {test, lint} = this.pjson.dxcli.workflows
 
-    this.yarnInstall(['husky', 'eslint-config-dxcli'], {dev: true})
+    this.yarnInstall(['husky', 'eslint-config-dxcli', 'eslint'], {dev: true})
     if (this.answers.options.mocha) {
       this.yarnInstall(['mocha', 'nyc'], {dev: true})
     }
