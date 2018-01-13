@@ -1,3 +1,18 @@
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/dxcli/generator-dxcli/compare/2be7dfc5e532d0b1e2e8793f6c981bcd23674beb...v1.5.0) (2018-01-13)
+
+
+### Bug Fixes
+
+* fix mocha.opts template newline ([938325f](https://github.com/dxcli/generator-dxcli/commit/938325f))
+* remove cli-ux by default ([6329fe1](https://github.com/dxcli/generator-dxcli/commit/6329fe1))
+
+
+### Features
+
+* use [@dxcli](https://github.com/dxcli)/dev-test ([7d64d6e](https://github.com/dxcli/generator-dxcli/commit/7d64d6e))
+* use junit reporters for circleci ([6786bb8](https://github.com/dxcli/generator-dxcli/commit/6786bb8))
+
 <a name="1.4.3"></a>
 ## [1.4.3](https://github.com/dxcli/generator-dxcli/compare/573cabe56ba54f2731436fe0239c1cdd90bb14bd...v1.4.3) (2018-01-13)
 
