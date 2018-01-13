@@ -152,7 +152,7 @@ class App extends Generator {
           {name: 'semantic-release', checked: fromScratch ? true : !!this.pjson.devDependencies['@dxcli/dev-semantic-release']},
           {name: 'mocha', checked: fromScratch ? true : !!this.pjson.devDependencies.mocha},
         ],
-        filter: _.keyBy as any
+        filter: ((arr: string[]) => _.keyBy(arr)) as any,
       },
     ]) as any
     if (!this.answers.github) {
@@ -179,12 +179,7 @@ class App extends Generator {
     this.pjson.scripts.lint = this.pjson.scripts.lint || 'dxcli-dev lint'
     this.pjson.scripts.test = this.pjson.scripts.test || 'dxcli-dev test'
 
-    this.yarnInstall(['husky', 'eslint-config-dxcli', 'eslint'], {dev: true})
-    if (this.answers.options.mocha) {
-      this.yarnInstall(['mocha', 'nyc'], {dev: true})
-    }
     if (this.answers.options.typescript) {
-      this.yarnInstall(['typescript', '@dxcli/dev-tslint'], {dev: true})
       this.fs.copyTpl(this.templatePath('tslint.json'), this.destinationPath('tslint.json'), this)
       this.fs.copyTpl(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'), this)
       this.pjson.scripts.prepare = this.pjson.scripts.prepare || 'tsc'
@@ -194,10 +189,12 @@ class App extends Generator {
       if (!test.find((c: string) => c.startsWith('tslint'))) test.push('tslint -p .')
     }
     if (this.answers.options['semantic-release']) {
-      this.yarnInstall(['@dxcli/dev-semantic-release'], {dev: true})
       this.pjson.scripts.commitmsg = this.pjson.scripts.commitmsg || 'dxcli-dev-commitmsg'
       if (!lint.find((c: string) => c.startsWith('commitlint'))) lint.push('commitlint --from master')
       if (!test.find((c: string) => c.startsWith('commitlint'))) test.push('commitlint --from master')
+    }
+    if (this.answers.options.mocha) {
+      if (!test.find((c: string) => c.startsWith('nyc mocha'))) test.push('nyc mocha')
     }
     if (this.fs.exists(this.destinationPath('./package.json'))) {
       fixpack(this.destinationPath('./package.json'), require('fixpack/config.json'))
@@ -214,7 +211,23 @@ class App extends Generator {
   }
 
   install() {
-    this.installDependencies({npm: false, yarn: true, bower: false})
+    const dependencies: string[] = []
+    const devDependencies = [
+      'husky',
+      'eslint-config-dxcli',
+      'eslint'
+    ]
+    if (this.answers.options.mocha) {
+      devDependencies.push('mocha', 'nyc')
+    }
+    if (this.answers.options.typescript) {
+      devDependencies.push('typescript', '@dxcli/dev-tslint')
+    }
+    if (this.answers.options['semantic-release']) {
+      devDependencies.push('@dxcli/dev-semantic-release')
+    }
+    if (dependencies.length) this.yarnInstall(dependencies)
+    if (devDependencies.length) this.yarnInstall(devDependencies, {dev: true})
   }
 }
 
