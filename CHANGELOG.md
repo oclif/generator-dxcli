@@ -1,3 +1,11 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/dxcli/generator-dxcli/compare/1903ccdb189ca2b8a813815b989f6dfc40e18403...v1.2.0) (2018-01-13)
+
+
+### Features
+
+* add appveyor ([cfb6a39](https://github.com/dxcli/generator-dxcli/commit/cfb6a39))
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/dxcli/generator-dxcli/compare/bda832177847fa0b8b3c471d605dae93eaaf7df7...v1.1.1) (2018-01-13)
 
