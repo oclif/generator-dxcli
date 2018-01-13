@@ -1,3 +1,11 @@
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/dxcli/generator-dxcli/compare/eae09a851b40ad06e84f1965e2f6a1c61404fe00...v1.2.2) (2018-01-13)
+
+
+### Bug Fixes
+
+* snyk badge ([c475b37](https://github.com/dxcli/generator-dxcli/commit/c475b37))
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/dxcli/generator-dxcli/compare/cfb6a398ff13ca58eedf04d4531bb69a2e5a0712...v1.2.1) (2018-01-13)
 
