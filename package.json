@@ -15,7 +15,7 @@
   "devDependencies": {
     "@dxcli/dev-lint": "^0.0.2",
     "@dxcli/dev-semantic-release": "^0.0.2",
-    "@dxcli/dev-tslint": "^0.0.4",
+    "@dxcli/dev-tslint": "^0.0.5",
     "@types/lodash": "^4.14.92",
     "@types/yeoman-generator": "^2.0.1",
     "@types/yosay": "^0.0.29",
