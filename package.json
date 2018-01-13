@@ -27,6 +27,7 @@
     "@types/yeoman-generator": "^2.0.1",
     "@types/yosay": "^0.0.29",
     "chai": "^4.1.2",
+    "del-cli": "^1.1.0",
     "ejs-lint": "^0.3.0",
     "eslint": "^4.15.0",
     "eslint-config-dxcli": "^1.1.2",
@@ -59,7 +60,8 @@
     "node": ">=8.0.0"
   },
   "files": [
-    "/lib"
+    "/templates",
+    "/generator"
   ],
   "keywords": [
     "dxcli",
@@ -71,7 +73,7 @@
   "scripts": {
     "commitmsg": "dxcli-dev-commitmsg",
     "lint": "dxcli-dev lint",
-    "prepare": "tsc",
+    "prepare": "del-cli generators && tsc",
     "test": "rm -rf tmp/test-basic && tsc && dxcli-dev test"
   }
 }
