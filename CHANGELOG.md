@@ -1,3 +1,11 @@
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/dxcli/generator-dxcli/compare/e4584db620e0c12dbccc6568778e03ad38c7e5e9...v1.2.3) (2018-01-13)
+
+
+### Bug Fixes
+
+* header length ([34c1691](https://github.com/dxcli/generator-dxcli/commit/34c1691))
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/dxcli/generator-dxcli/compare/eae09a851b40ad06e84f1965e2f6a1c61404fe00...v1.2.2) (2018-01-13)
 
