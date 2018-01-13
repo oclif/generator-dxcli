@@ -4,16 +4,23 @@
   "version": "1.0.0",
   "author": "Jeff Dickey",
   "dependencies": {
-    "sort-pjson": "^1.0.0",
+    "debug": "^3.1.0",
+    "fixpack": "^2.3.1",
+    "lodash": "^4.17.4",
+    "sort-pjson": "^1.0.1",
     "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },
   "devDependencies": {
-    "@dxcli/dev-lint": "^0.0.1",
+    "@dxcli/dev-lint": "^0.0.2",
     "@dxcli/dev-semantic-release": "^0.0.2",
+    "@dxcli/dev-tslint": "^0.0.4",
+    "@types/lodash": "^4.14.92",
     "@types/yeoman-generator": "^2.0.1",
     "@types/yosay": "^0.0.29",
+    "ejs-lint": "^0.3.0",
     "husky": "^0.14.3",
+    "tslint": "^5.9.1",
     "typescript": "^2.6.2"
   },
   "files": [
@@ -24,7 +31,7 @@
     "yeoman-generator"
   ],
   "license": "MIT",
-  "main": "generators/index.js",
+  "main": "generators/app/index.js",
   "repository": "dxcli/generator-dxcli",
   "scripts": {
     "prepare": "tsc"
