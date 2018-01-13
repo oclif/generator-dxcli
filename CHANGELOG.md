@@ -1,3 +1,11 @@
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/dxcli/generator-dxcli/compare/cfb6a398ff13ca58eedf04d4531bb69a2e5a0712...v1.2.1) (2018-01-13)
+
+
+### Bug Fixes
+
+* appveyor badge ([eae09a8](https://github.com/dxcli/generator-dxcli/commit/eae09a8))
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/dxcli/generator-dxcli/compare/1903ccdb189ca2b8a813815b989f6dfc40e18403...v1.2.0) (2018-01-13)
 
