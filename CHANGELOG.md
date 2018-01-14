@@ -1,3 +1,11 @@
+<a name="1.5.2"></a>
+## [1.5.2](https://github.com/dxcli/generator-dxcli/compare/b508709a05343531ca242a172a01d28d75b20214...v1.5.2) (2018-01-14)
+
+
+### Bug Fixes
+
+* fix precommit ([c5bb87d](https://github.com/dxcli/generator-dxcli/commit/c5bb87d))
+
 <a name="1.5.1"></a>
 ## [1.5.1](https://github.com/dxcli/generator-dxcli/compare/7d64d6e049c78c4e688434b7a500f7e0bb3f55a4...v1.5.1) (2018-01-13)
 
