@@ -40,6 +40,7 @@
     "husky": "^0.14.3",
     "mocha": "^4.1.0",
     "nyc": "^11.4.1",
+    "shelljs": "^0.8.0",
     "ts-node": "^4.1.0",
     "tslint": "^5.9.1",
     "typescript": "^2.6.2",
@@ -52,7 +53,7 @@
         "tsc",
         "tslint -p .",
         "commitlint --from master",
-        "./bin/run base tmp/test-base --defaults && cd tmp/test-base && git add . && git commit -nm 'chore: init' && yarn test && yarn run lint"
+        "node ./scripts/test"
       ],
       "lint": [
         "eslint .",
