@@ -1,3 +1,17 @@
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/dxcli/generator-dxcli/compare/44e30720b4b39c3aa9b4cb768963e13b6b305380...v1.8.0) (2018-01-14)
+
+
+### Bug Fixes
+
+* add types ([846698f](https://github.com/dxcli/generator-dxcli/commit/846698f))
+* spec reporter renders better in concurrently ([30d2e9a](https://github.com/dxcli/generator-dxcli/commit/30d2e9a))
+
+
+### Features
+
+* add pjson description to readme ([e3d2aa2](https://github.com/dxcli/generator-dxcli/commit/e3d2aa2))
+
 <a name="1.7.2"></a>
 ## [1.7.2](https://github.com/dxcli/generator-dxcli/compare/fd155f59fe85d6c006dcda1277e9a6b38b0fd77a...v1.7.2) (2018-01-14)
 
