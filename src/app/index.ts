@@ -1,7 +1,7 @@
 // tslint:disable no-floating-promises
 
+import * as _ from 'lodash'
 import * as path from 'path'
-import _ from 'ts-lodash'
 import * as Generator from 'yeoman-generator'
 import yosay = require('yosay')
 
@@ -24,11 +24,12 @@ function stringToArray(s: string) {
 }
 
 class App extends Generator {
-  options: any
+  options: {defaults: boolean}
   args: {[k: string]: string}
   type: 'base'
   path: string
   pjson: any
+  tsconfig: any
   fromScratch: boolean
   answers: {
     appname: string
@@ -66,6 +67,7 @@ class App extends Generator {
   }
 
   async prompting() {
+    if (process.env.DXCLI_CREATE_DEFAULTS === '1') this.options.defaults = true
     this.log(yosay(
       `Time to build a dxcli ${this.type}! Version: ${require('../../package.json').version}`
     ))
@@ -211,8 +213,25 @@ class App extends Generator {
 
     if (this.ts) {
       this.fs.copyTpl(this.templatePath('tslint.json'), this.destinationPath('tslint.json'), this)
-      this.fs.copyTpl(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'), this)
-      this.pjson.scripts.prepare = this.pjson.scripts.prepare || 'del-cli lib && tsc'
+      this.tsconfig = this.fs.readJSON(this.destinationPath('tsconfig.json'), {
+        compilerOptions: {
+          declaration: true,
+          forceConsistentCasingInFileNames: true,
+          importHelpers: true,
+          module: 'commonjs',
+          noUnusedLocals: true,
+          noUnusedParameters: true,
+          outDir: './lib',
+          rootDir: './src',
+          strict: true,
+          target: 'es2017'
+        },
+        include: [
+          'src/**/*'
+        ]
+      })
+      this.fs.writeJSON(this.destinationPath('tsconfig.json'), this.tsconfig)
+      this.pjson.scripts.prepare = this.pjson.scripts.prepare || `del-cli ${this.tsconfig.compilerOptions.outDir} && tsc`
       if (!lint.find((c: string) => c.startsWith('tsc'))) lint.push('tsc')
       if (!test.find((c: string) => c.startsWith('tsc'))) test.push('tsc')
       if (!lint.find((c: string) => c.startsWith('tslint'))) lint.push('tslint -p .')
@@ -251,26 +270,10 @@ class App extends Generator {
     // git
     if (this.fromScratch) this.spawnCommandSync('git', ['init'])
     this.fs.copyTpl(this.templatePath('gitattributes'), this.destinationPath('.gitattributes'), this)
-    let gitignore = [
-      '/coverage',
-      '/lib',
-      '/node_modules',
-      '/tmp',
-    ]
-    if (this.mocha) gitignore.push('/.nyc_output')
-    gitignore.push(
-      '',
-      '*-error.log',
-      '*-debug.log',
-    )
 
-    if (gitignore.length) this.fs.write(this.destinationPath('.gitignore'), gitignore.join('\n') + '\n')
-
-    // eslint
+    this.fs.write(this.destinationPath('.gitignore'), this._gitignore())
     this.fs.copyTpl(this.templatePath('eslintrc'), this.destinationPath('.eslintrc'), this)
-    let eslintignore: string[] = []
-    if (this.ts) eslintignore.push('/lib')
-    if (eslintignore.length) this.fs.write(this.destinationPath('.eslintignore'), eslintignore.join('\n') + '\n')
+    this.fs.write(this.destinationPath('.eslintignore'), this._eslintignore())
   }
 
   install() {
@@ -306,6 +309,40 @@ class App extends Generator {
     }
     if (devDependencies.length) this.yarnInstall(devDependencies, {dev: true})
     if (dependencies.length) this.yarnInstall(dependencies)
+    yosay(`Created ${this.pjson.name} in ${this.destinationRoot()}`)
+  }
+
+  private get _tsOutDir(): string | undefined {
+    if (!this.ts || !this.tsconfig || !this.tsconfig.compilerOptions || !this.tsconfig.compilerOptions.outDir) return
+    return this.tsconfig.compilerOptions.outDir.replace(/\./, '')
+  }
+
+  private _gitignore(): string {
+    const existing = this.fs.exists(this.destinationPath('.gitignore')) ? this.fs.read(this.destinationPath('.gitignore')).split('\n') : []
+    return _([
+      '*-debug.log',
+      '*-error.log',
+      '/coverage',
+      '/node_modules',
+      '/tmp',
+      this._tsOutDir,
+      this.mocha && '/.nyc_output',
+    ])
+      .concat(existing)
+      .compact()
+      .uniq()
+      .join('\n') + '\n'
+  }
+
+  private _eslintignore(): string {
+    const existing = this.fs.exists(this.destinationPath('.eslintignore')) ? this.fs.read(this.destinationPath('.eslintignore')).split('\n') : []
+    return _([
+      this._tsOutDir,
+    ])
+      .concat(existing)
+      .compact()
+      .uniq()
+      .join('\n') + '\n'
   }
 }
 
