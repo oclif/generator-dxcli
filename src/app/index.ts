@@ -340,6 +340,7 @@ class App extends Generator {
       .concat(existing)
       .compact()
       .uniq()
+      .sort()
       .join('\n') + '\n'
   }
 
@@ -351,6 +352,7 @@ class App extends Generator {
       .concat(existing)
       .compact()
       .uniq()
+      .sort()
       .join('\n') + '\n'
   }
 }
