@@ -236,7 +236,7 @@ class App extends Generator {
         ]
       })
       this.fs.writeJSON(this.destinationPath('tsconfig.json'), this.tsconfig)
-      this.pjson.scripts.prepare = this.pjson.scripts.prepare || `del-cli ${this.tsconfig.compilerOptions.outDir} && tsc`
+      this.pjson.scripts.prepare = this.pjson.scripts.prepare || `rm -rf ${this.tsconfig.compilerOptions.outDir} && tsc`
       if (!lint.find((c: string) => c.startsWith('tsc'))) lint.push('tsc --noEmit')
       if (!test.find((c: string) => c.startsWith('tsc'))) test.push('tsc --noEmit')
       if (!lint.find((c: string) => c.startsWith('tslint'))) lint.push('tslint -p .')
@@ -300,7 +300,6 @@ class App extends Generator {
     }
     if (this.ts) {
       devDependencies.push(
-        'del-cli',
         'typescript',
         '@dxcli/dev-tslint',
         '@types/node',
