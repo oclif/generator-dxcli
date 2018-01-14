@@ -32,6 +32,7 @@
     "@types/yeoman-generator": "^2.0.1",
     "@types/yosay": "^0.0.29",
     "chai": "^4.1.2",
+    "cross-env": "^5.1.3",
     "del-cli": "^1.1.0",
     "ejs-lint": "^0.3.0",
     "eslint": "^4.15.0",
@@ -81,7 +82,7 @@
     "lint": "dxcli-dev lint",
     "precommit": "dxcli-dev lint",
     "prepare": "del-cli generators && tsc",
-    "test": "rm -rf tmp/test-base && tsc && DXCLI_CREATE_DEFAULTS=1 dxcli-dev test"
+    "test": "rm -rf tmp/test-base && tsc && cross-env DXCLI_CREATE_DEFAULTS=1 dxcli-dev test"
   },
   "types": "generators/run.d.ts"
 }
