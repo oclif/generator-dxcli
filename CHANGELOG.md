@@ -1,3 +1,13 @@
+<a name="1.7.1"></a>
+## [1.7.1](https://github.com/dxcli/generator-dxcli/compare/6a0ed008d4af3a9080024af41ea1b5e2d00b38eb...v1.7.1) (2018-01-14)
+
+
+### Bug Fixes
+
+* fixed author ([b7a3814](https://github.com/dxcli/generator-dxcli/commit/b7a3814))
+* fixed create message ([143ea82](https://github.com/dxcli/generator-dxcli/commit/143ea82))
+* fixed null githubUser ([fd155f5](https://github.com/dxcli/generator-dxcli/commit/fd155f5))
+
 <a name="1.7.0"></a>
 # [1.7.0](https://github.com/dxcli/generator-dxcli/compare/41a34ece9ad9fb41ddbcb94792e2db03ec313d57...v1.7.0) (2018-01-14)
 
