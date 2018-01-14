@@ -161,9 +161,9 @@
     tslint "^5.9.1"
     tslint-xo "^0.4.0"
 
-"@dxcli/dev@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@dxcli/dev/-/dev-1.0.0.tgz#5cfab36108fcfb44f7a94ad5bca06328f909aec0"
+"@dxcli/dev@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@dxcli/dev/-/dev-1.1.0.tgz#e53e9077bcd8ab2fb45582498aff965c9e0a734a"
   dependencies:
     cli-ux "^2.0.21"
     concurrently "^3.5.1"
@@ -1723,9 +1723,9 @@ eslint-config-dxcli@^1.0.1:
     eslint-plugin-node "^5.2.1"
     eslint-plugin-unicorn "^3.0.1"
 
-eslint-config-dxcli@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-dxcli/-/eslint-config-dxcli-1.1.2.tgz#284fe88dd54312217659ec81656e57e2b375ea56"
+eslint-config-dxcli@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/eslint-config-dxcli/-/eslint-config-dxcli-1.1.3.tgz#147d83d1d52169c8a28acfaf33f6d4a4c4658c9c"
   dependencies:
     eslint-config-xo-space "^0.17.0"
     eslint-plugin-node "^5.2.1"
