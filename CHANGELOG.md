@@ -1,3 +1,11 @@
+<a name="1.9.0"></a>
+# [1.9.0](https://github.com/dxcli/generator-dxcli/compare/846698fc468b1f573ca2f3ca3ab9c258ca5b1ed4...v1.9.0) (2018-01-14)
+
+
+### Features
+
+* run tsc on test files to check syntax ([aa8d254](https://github.com/dxcli/generator-dxcli/commit/aa8d254))
+
 <a name="1.8.0"></a>
 # [1.8.0](https://github.com/dxcli/generator-dxcli/compare/44e30720b4b39c3aa9b4cb768963e13b6b305380...v1.8.0) (2018-01-14)
 
