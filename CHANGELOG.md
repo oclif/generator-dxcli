@@ -1,3 +1,11 @@
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/dxcli/generator-dxcli/compare/c5bb87d00776053de345e5ed43ed23ff3549ede2...v1.6.0) (2018-01-14)
+
+
+### Features
+
+* added create script ([315e775](https://github.com/dxcli/generator-dxcli/commit/315e775))
+
 <a name="1.5.2"></a>
 ## [1.5.2](https://github.com/dxcli/generator-dxcli/compare/b508709a05343531ca242a172a01d28d75b20214...v1.5.2) (2018-01-14)
 
