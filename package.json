@@ -52,7 +52,7 @@
         "tsc",
         "tslint -p .",
         "commitlint --from master",
-        "node ./scripts/test"
+        "node scripts/test"
       ],
       "lint": [
         "eslint .",
