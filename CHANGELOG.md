@@ -1,3 +1,11 @@
+<a name="1.7.2"></a>
+## [1.7.2](https://github.com/dxcli/generator-dxcli/compare/fd155f59fe85d6c006dcda1277e9a6b38b0fd77a...v1.7.2) (2018-01-14)
+
+
+### Bug Fixes
+
+* add main/types to pjson ([44e3072](https://github.com/dxcli/generator-dxcli/commit/44e3072))
+
 <a name="1.7.1"></a>
 ## [1.7.1](https://github.com/dxcli/generator-dxcli/compare/6a0ed008d4af3a9080024af41ea1b5e2d00b38eb...v1.7.1) (2018-01-14)
 
