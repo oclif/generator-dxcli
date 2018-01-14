@@ -1,3 +1,12 @@
+<a name="1.9.3"></a>
+## [1.9.3](https://github.com/dxcli/generator-dxcli/compare/a0a168946ec1b4319f04505f791dc0d64ffab1e4...v1.9.3) (2018-01-14)
+
+
+### Bug Fixes
+
+* prepare script path in windows ([eca266f](https://github.com/dxcli/generator-dxcli/commit/eca266f))
+* sort gitignore and eslintignore ([7fb186e](https://github.com/dxcli/generator-dxcli/commit/7fb186e))
+
 <a name="1.9.2"></a>
 ## [1.9.2](https://github.com/dxcli/generator-dxcli/compare/182675e324840844b19be6f5e1fa94f525b91f87...v1.9.2) (2018-01-14)
 
