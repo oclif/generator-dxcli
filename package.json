@@ -3,6 +3,9 @@
   "description": "dxcli yeoman generator",
   "version": "1.5.2",
   "author": "Jeff Dickey",
+  "bin": {
+    "create-dxcli": "bin/run"
+  },
   "dependencies": {
     "cli-ux": "^2.0.21",
     "debug": "^3.1.0",
@@ -10,6 +13,7 @@
     "lodash": "^4.17.4",
     "sort-pjson": "^1.0.1",
     "ts-lodash": "^4.0.11",
+    "yeoman-environment": "^2.0.5",
     "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },
@@ -47,7 +51,7 @@
         "tsc",
         "tslint -p .",
         "commitlint --from master",
-        "yo dxcli base tmp/test-base --defaults && cd tmp/test-base && git add . && git commit -nm 'chore: init' && yarn test && yarn run lint"
+        "./bin/run base tmp/test-base --defaults && cd tmp/test-base && git add . && git commit -nm 'chore: init' && yarn test && yarn run lint"
       ],
       "lint": [
         "eslint .",
@@ -61,6 +65,7 @@
     "node": ">=8.0.0"
   },
   "files": [
+    "/bin",
     "/templates",
     "/generators"
   ],
@@ -74,7 +79,8 @@
   "scripts": {
     "commitmsg": "dxcli-dev-commitmsg",
     "lint": "dxcli-dev lint",
+    "precommit": "dxcli-dev lint",
     "prepare": "del-cli generators && tsc",
-    "test": "rm -rf tmp/test-base && tsc && dxcli-dev test"
+    "test": "rm -rf tmp/test-base && tsc && DXCLI_CREATE_DEFAULTS=1 dxcli-dev test"
   }
 }

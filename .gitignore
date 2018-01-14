@@ -1,8 +1,7 @@
+*-debug.log
+*-error.log
 /coverage
-/generators
 /node_modules
 /tmp
+/generators
 /.nyc_output
-
-*-error.log
-*-debug.log
