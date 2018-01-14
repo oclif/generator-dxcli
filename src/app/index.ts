@@ -1,4 +1,5 @@
 // tslint:disable no-floating-promises
+// tslint:disable no-console
 
 import * as _ from 'lodash'
 import * as path from 'path'
@@ -307,9 +308,12 @@ class App extends Generator {
     if (this.semantic_release) {
       devDependencies.push('@dxcli/dev-semantic-release')
     }
-    if (devDependencies.length) this.yarnInstall(devDependencies, {dev: true})
-    if (dependencies.length) this.yarnInstall(dependencies)
-    yosay(`Created ${this.pjson.name} in ${this.destinationRoot()}`)
+    Promise.all([
+      this.yarnInstall(devDependencies, {dev: true}),
+      dependencies.length ? this.yarnInstall(dependencies) : Promise.resolve(),
+    ]).then(() => {
+      console.log(`\nCreated ${this.pjson.name} in ${this.destinationRoot()}`)
+    })
   }
 
   private get _tsOutDir(): string | undefined {
