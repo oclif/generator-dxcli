@@ -1,3 +1,11 @@
+<a name="1.9.1"></a>
+## [1.9.1](https://github.com/dxcli/generator-dxcli/compare/aa8d2547e16f0548b31b1f171c05d97a47a33621...v1.9.1) (2018-01-14)
+
+
+### Bug Fixes
+
+* always use lf for js/ts files ([182675e](https://github.com/dxcli/generator-dxcli/commit/182675e))
+
 <a name="1.9.0"></a>
 # [1.9.0](https://github.com/dxcli/generator-dxcli/compare/846698fc468b1f573ca2f3ca3ab9c258ca5b1ed4...v1.9.0) (2018-01-14)
 
