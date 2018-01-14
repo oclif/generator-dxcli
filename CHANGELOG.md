@@ -1,3 +1,11 @@
+<a name="1.6.1"></a>
+## [1.6.1](https://github.com/dxcli/generator-dxcli/compare/315e775fe21291025450ce940a051dc6a736202e...v1.6.1) (2018-01-14)
+
+
+### Bug Fixes
+
+* always include nyc ([41a34ec](https://github.com/dxcli/generator-dxcli/commit/41a34ec))
+
 <a name="1.6.0"></a>
 # [1.6.0](https://github.com/dxcli/generator-dxcli/compare/c5bb87d00776053de345e5ed43ed23ff3549ede2...v1.6.0) (2018-01-14)
 
