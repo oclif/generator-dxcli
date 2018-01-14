@@ -237,11 +237,13 @@ class App extends Generator {
       })
       this.fs.writeJSON(this.destinationPath('tsconfig.json'), this.tsconfig)
       this.pjson.scripts.prepare = this.pjson.scripts.prepare || `del-cli ${this.tsconfig.compilerOptions.outDir} && tsc`
-      if (!lint.find((c: string) => c.startsWith('tsc'))) lint.push('tsc')
-      if (!test.find((c: string) => c.startsWith('tsc'))) test.push('tsc')
+      if (!lint.find((c: string) => c.startsWith('tsc'))) lint.push('tsc --noEmit')
+      if (!test.find((c: string) => c.startsWith('tsc'))) test.push('tsc --noEmit')
       if (!lint.find((c: string) => c.startsWith('tslint'))) lint.push('tslint -p .')
       if (!test.find((c: string) => c.startsWith('tslint'))) test.push('tslint -p .')
       if (this.mocha) {
+        if (!lint.find((c: string) => c.startsWith('tsc -p test'))) lint.push('tsc -p test --noEmit')
+        if (!test.find((c: string) => c.startsWith('tsc -p test'))) test.push('tsc -p test --noEmit')
         this.fs.copyTpl(this.templatePath('test/tsconfig.json'), this.destinationPath('test/tsconfig.json'), this)
       }
     }
