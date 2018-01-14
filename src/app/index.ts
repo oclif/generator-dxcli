@@ -82,7 +82,7 @@ class App extends Generator {
     this.pjson.name = this.pjson.name || this.determineAppname().replace(/ /, '-')
     this.pjson.version = this.pjson.version || '0.0.0'
     this.pjson.license = this.pjson.license || 'MIT'
-    this.pjson.author = this.pjson.author || this.user.git.name()
+    this.pjson.author = this.pjson.author || `${this.user.git.name()} @${await this.user.github.username()}`
     this.pjson.engines = this.pjson.engines || {}
     this.pjson.engines.node = this.pjson.engines.node || '>=8.0.0'
     this.pjson.dependencies = this.pjson.dependencies || {}
