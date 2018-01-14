@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+/* eslint-disable node/shebang */
+
+const sh = require('shelljs')
+
+sh.verbose = true
+
+sh.exec('./bin/run base tmp/test-base')
+sh.cd('tmp/test-base')
+sh.exec('git add .')
+sh.exec("git commit -nm 'chore: init'")
+sh.exec('yarn test')
+sh.exec('yarn run lint')
