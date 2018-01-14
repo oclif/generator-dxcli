@@ -207,7 +207,7 @@ class App extends Generator {
     if (!test.find((c: string) => c.startsWith('eslint'))) test.push('eslint .')
     this.pjson.scripts.lint = this.pjson.scripts.lint || 'dxcli-dev lint'
     this.pjson.scripts.test = this.pjson.scripts.test || 'dxcli-dev test'
-    this.pjson.scripts.precommit = this.pjson.scripts.test || 'dxcli-dev lint'
+    this.pjson.scripts.precommit = this.pjson.scripts.precommit || 'dxcli-dev lint'
 
     if (this.ts) {
       this.fs.copyTpl(this.templatePath('tslint.json'), this.destinationPath('tslint.json'), this)
