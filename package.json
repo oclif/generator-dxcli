@@ -47,7 +47,7 @@
         "tsc",
         "tslint -p .",
         "commitlint --from master",
-        "yo dxcli base tmp/test-base --defaults && cd tmp/test-base && git add . && git commit -m 'chore: init' && yarn test && yarn run lint"
+        "yo dxcli base tmp/test-base --defaults && cd tmp/test-base && git add . && git commit -nm 'chore: init' && yarn test && yarn run lint"
       ],
       "lint": [
         "eslint .",
