@@ -1,3 +1,11 @@
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/dxcli/generator-dxcli/compare/41a34ece9ad9fb41ddbcb94792e2db03ec313d57...v1.7.0) (2018-01-14)
+
+
+### Features
+
+* use package name for workflow name ([6a0ed00](https://github.com/dxcli/generator-dxcli/commit/6a0ed00))
+
 <a name="1.6.1"></a>
 ## [1.6.1](https://github.com/dxcli/generator-dxcli/compare/315e775fe21291025450ce940a051dc6a736202e...v1.6.1) (2018-01-14)
 
