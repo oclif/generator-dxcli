@@ -213,8 +213,10 @@ class App extends Generator {
     this.pjson.scripts.lint = this.pjson.scripts.lint || 'dxcli-dev lint'
     this.pjson.scripts.test = this.pjson.scripts.test || 'dxcli-dev test'
     this.pjson.scripts.precommit = this.pjson.scripts.precommit || 'dxcli-dev lint'
+    this.pjson.main = this.pjson.main || 'lib/index.js'
 
     if (this.ts) {
+      this.pjson.types = this.pjson.types || 'lib/index.d.ts'
       this.fs.copyTpl(this.templatePath('tslint.json'), this.destinationPath('tslint.json'), this)
       this.tsconfig = this.fs.readJSON(this.destinationPath('tsconfig.json'), {
         compilerOptions: {
