@@ -1,3 +1,11 @@
+<a name="1.9.2"></a>
+## [1.9.2](https://github.com/dxcli/generator-dxcli/compare/182675e324840844b19be6f5e1fa94f525b91f87...v1.9.2) (2018-01-14)
+
+
+### Bug Fixes
+
+* no longer need del-cli! ([a0a1689](https://github.com/dxcli/generator-dxcli/commit/a0a1689))
+
 <a name="1.9.1"></a>
 ## [1.9.1](https://github.com/dxcli/generator-dxcli/compare/aa8d2547e16f0548b31b1f171c05d97a47a33621...v1.9.1) (2018-01-14)
 
