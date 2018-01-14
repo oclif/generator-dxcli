@@ -6,7 +6,7 @@ const sh = require('shelljs')
 
 sh.verbose = true
 
-sh.exec('./bin/run base tmp/test-base')
+sh.exec('node bin/run base tmp/test-base')
 sh.cd('tmp/test-base')
 sh.exec('git add .')
 sh.exec("git commit -nm 'chore: init'")
