@@ -283,12 +283,12 @@ class App extends Generator {
       'husky',
       'eslint-config-dxcli',
       'eslint',
+      'nyc',
     ]
     if (this.mocha) {
       devDependencies.push(
         '@dxcli/dev-test',
         'mocha',
-        'nyc',
       )
     }
     if (this.ts) {
