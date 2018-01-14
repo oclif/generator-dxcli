@@ -82,5 +82,6 @@
     "precommit": "dxcli-dev lint",
     "prepare": "del-cli generators && tsc",
     "test": "rm -rf tmp/test-base && tsc && DXCLI_CREATE_DEFAULTS=1 dxcli-dev test"
-  }
+  },
+  "types": "generators/run.d.ts"
 }
