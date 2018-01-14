@@ -32,6 +32,7 @@ class App extends Generator {
   pjson: any
   tsconfig: any
   fromScratch: boolean
+  githubUser: string | undefined
   answers: {
     appname: string
     description: string
@@ -77,12 +78,13 @@ class App extends Generator {
       this.destinationRoot(path.resolve(this.path))
       process.chdir(this.destinationRoot())
     }
+    this.githubUser = await this.user.github.username().catch(debug)
     this.pjson = this.fs.readJSON('package.json', {})
     this.fromScratch = Object.keys(this.pjson).length === 0
     this.pjson.name = this.pjson.name || this.determineAppname().replace(/ /, '-')
     this.pjson.version = this.pjson.version || '0.0.0'
     this.pjson.license = this.pjson.license || 'MIT'
-    this.pjson.author = this.pjson.author || `${this.user.git.name()} @${await this.user.github.username()}`
+    this.pjson.author = this.pjson.author || (this.githubUser ? `${this.user.git.name()} @${this.githubUser}` : this.user.git.name())
     this.pjson.engines = this.pjson.engines || {}
     this.pjson.engines.node = this.pjson.engines.node || '>=8.0.0'
     this.pjson.dependencies = this.pjson.dependencies || {}
@@ -147,7 +149,7 @@ class App extends Generator {
         type: 'input',
         name: 'github.user',
         message: 'github owner of repository (https://github.com/OWNER/repo)',
-        default: this.pjson.repository ? this.pjson.repository.split('/').slice(0, -1).pop() : await this.user.github.username(),
+        default: this.pjson.repository ? this.pjson.repository.split('/').slice(0, -1).pop() : this.githubUser,
         when: this.fromScratch || !this.pjson.repository,
       },
       {
@@ -165,14 +167,6 @@ class App extends Generator {
         when: this.fromScratch || !this.pjson.repository,
       },
       {
-        type: 'string',
-        name: 'files',
-        message: 'npm files to pack',
-        default: this.pjson.files ? this.pjson.files.join(',') : '/lib',
-        filter: stringToArray as any,
-        when: this.fromScratch || !this.pjson.repository,
-      },
-      {
         type: 'checkbox',
         name: 'options',
         message: 'components to include',
@@ -182,6 +176,14 @@ class App extends Generator {
           {name: 'mocha', checked: this.fromScratch ? true : !!this.pjson.devDependencies.mocha},
         ],
         filter: ((arr: string[]) => _.keyBy(arr)) as any,
+      },
+      {
+        type: 'string',
+        name: 'files',
+        message: 'npm files to pack',
+        default: this.pjson.files ? this.pjson.files.join(',') : '/lib',
+        filter: stringToArray as any,
+        when: this.fromScratch || !this.pjson.repository,
       },
     ]) as any
     if (!this.answers.github && this.pjson.repository) {
