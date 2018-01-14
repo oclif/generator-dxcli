@@ -161,9 +161,9 @@
     tslint "^5.9.1"
     tslint-xo "^0.4.0"
 
-"@dxcli/dev@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@dxcli/dev/-/dev-1.1.0.tgz#e53e9077bcd8ab2fb45582498aff965c9e0a734a"
+"@dxcli/dev@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@dxcli/dev/-/dev-1.1.2.tgz#66acd0b6d5cc9cf8a94a00692c67d40c94ebf81b"
   dependencies:
     cli-ux "^2.0.21"
     concurrently "^3.5.1"
@@ -1730,9 +1730,9 @@ eslint-config-dxcli@^1.0.1:
     eslint-plugin-node "^5.2.1"
     eslint-plugin-unicorn "^3.0.1"
 
-eslint-config-dxcli@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/eslint-config-dxcli/-/eslint-config-dxcli-1.1.3.tgz#147d83d1d52169c8a28acfaf33f6d4a4c4658c9c"
+eslint-config-dxcli@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/eslint-config-dxcli/-/eslint-config-dxcli-1.1.4.tgz#e74a6be724d4de72f116d87f300afb5aacd25fe9"
   dependencies:
     eslint-config-xo-space "^0.17.0"
     eslint-plugin-node "^5.2.1"
@@ -4830,9 +4830,9 @@ sort-on@^2.0.0:
     arrify "^1.0.0"
     dot-prop "^4.1.1"
 
-sort-pjson@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/sort-pjson/-/sort-pjson-1.0.1.tgz#f8818cfd5a533a37b379f6abedb9e33a411ed861"
+sort-pjson@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/sort-pjson/-/sort-pjson-1.0.2.tgz#1090b35b43cd1a13648ee7be4c52f926ecc4c6d8"
   dependencies:
     fixpack "^2.3.1"
 
