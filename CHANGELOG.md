@@ -1,3 +1,11 @@
+<a name="1.9.4"></a>
+## [1.9.4](https://github.com/dxcli/generator-dxcli/compare/7fb186ed9ef59f3946da85faf8ffd00b6581c437...v1.9.4) (2018-01-14)
+
+
+### Performance Improvements
+
+* only call tslint/tsc once ([65b7b89](https://github.com/dxcli/generator-dxcli/commit/65b7b89))
+
 <a name="1.9.3"></a>
 ## [1.9.3](https://github.com/dxcli/generator-dxcli/compare/a0a168946ec1b4319f04505f791dc0d64ffab1e4...v1.9.3) (2018-01-14)
 
