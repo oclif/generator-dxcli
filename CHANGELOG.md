@@ -1,3 +1,11 @@
+<a name="1.9.6"></a>
+## [1.9.6](https://github.com/dxcli/generator-dxcli/compare/57a6277bc567f07278ce93ec9eb8570c8cf79e21...v1.9.6) (2018-01-15)
+
+
+### Bug Fixes
+
+* break cache on yarn.lock changes ([7001dbf](https://github.com/dxcli/generator-dxcli/commit/7001dbf))
+
 <a name="1.9.5"></a>
 ## [1.9.5](https://github.com/dxcli/generator-dxcli/compare/65b7b8948b4c4c541a72277b73fd33ccb9633874...v1.9.5) (2018-01-15)
 
