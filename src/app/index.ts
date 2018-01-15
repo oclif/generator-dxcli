@@ -252,8 +252,8 @@ class App extends Generator {
     }
     if (this.semantic_release) {
       this.pjson.scripts.commitmsg = this.pjson.scripts.commitmsg || 'dxcli-dev-commitmsg'
-      if (!lint.find((c: string) => c.startsWith('commitlint'))) lint.push('commitlint --from master')
-      if (!test.find((c: string) => c.startsWith('commitlint'))) test.push('commitlint --from master')
+      if (!lint.find((c: string) => c.startsWith('commitlint'))) lint.push('commitlint --from origin/master')
+      if (!test.find((c: string) => c.startsWith('commitlint'))) test.push('commitlint --from origin/master')
     }
     if (this.mocha) {
       if (!test.find((c: string) => c.startsWith('mocha'))) test.push('mocha "test/**/*.ts"')
