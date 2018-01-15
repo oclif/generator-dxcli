@@ -2,10 +2,13 @@
 
 /* eslint-disable node/shebang */
 
+process.env.DXCLI_CREATE_DEFAULTS = '1'
+
 const sh = require('shelljs')
 
-sh.verbose = true
+sh.set('-ev')
 
+sh.rm('-rf', 'tmp/test-base')
 sh.exec('node bin/run base tmp/test-base')
 sh.cd('tmp/test-base')
 sh.exec('git add .')
