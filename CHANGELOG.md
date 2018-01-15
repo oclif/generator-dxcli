@@ -1,3 +1,11 @@
+<a name="1.10.1"></a>
+## [1.10.1](https://github.com/dxcli/generator-dxcli/compare/acddb1d3cce8b22c580039ae0100cfb1e6457ed6...v1.10.1) (2018-01-15)
+
+
+### Bug Fixes
+
+* update create-dxcli on release ([8b5dc82](https://github.com/dxcli/generator-dxcli/commit/8b5dc82))
+
 <a name="1.10.0"></a>
 # [1.10.0](https://github.com/dxcli/generator-dxcli/compare/7001dbf13691a46acf7e515aa1c9bbaf4969c0ea...v1.10.0) (2018-01-15)
 
