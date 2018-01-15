@@ -1,3 +1,16 @@
+<a name="1.10.0"></a>
+# [1.10.0](https://github.com/dxcli/generator-dxcli/compare/7001dbf13691a46acf7e515aa1c9bbaf4969c0ea...v1.10.0) (2018-01-15)
+
+
+### Bug Fixes
+
+* ignore coverage.lcov ([04fcf55](https://github.com/dxcli/generator-dxcli/commit/04fcf55))
+
+
+### Features
+
+* add duration to circleci ([23ada34](https://github.com/dxcli/generator-dxcli/commit/23ada34))
+
 <a name="1.9.6"></a>
 ## [1.9.6](https://github.com/dxcli/generator-dxcli/compare/57a6277bc567f07278ce93ec9eb8570c8cf79e21...v1.9.6) (2018-01-15)
 
