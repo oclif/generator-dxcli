@@ -1,3 +1,11 @@
+<a name="1.9.5"></a>
+## [1.9.5](https://github.com/dxcli/generator-dxcli/compare/65b7b8948b4c4c541a72277b73fd33ccb9633874...v1.9.5) (2018-01-15)
+
+
+### Bug Fixes
+
+* commitlint from origin/master ([57a6277](https://github.com/dxcli/generator-dxcli/commit/57a6277))
+
 <a name="1.9.4"></a>
 ## [1.9.4](https://github.com/dxcli/generator-dxcli/compare/7fb186ed9ef59f3946da85faf8ffd00b6581c437...v1.9.4) (2018-01-14)
 
