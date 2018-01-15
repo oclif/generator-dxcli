@@ -334,6 +334,7 @@ class App extends Generator {
     return _([
       '*-debug.log',
       '*-error.log',
+      '/coverage.lcov',
       '/coverage',
       '/node_modules',
       '/tmp',
