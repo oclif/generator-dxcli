@@ -1,3 +1,12 @@
+<a name="1.10.2"></a>
+## [1.10.2](https://github.com/dxcli/generator-dxcli/compare/8b5dc825a89abe1f8557d295e6641c9e9d5a3bc2...v1.10.2) (2018-01-16)
+
+
+### Bug Fixes
+
+* fix tests in windows ([3288562](https://github.com/dxcli/generator-dxcli/commit/3288562))
+* move release into circleci script ([96b8a8c](https://github.com/dxcli/generator-dxcli/commit/96b8a8c))
+
 <a name="1.10.1"></a>
 ## [1.10.1](https://github.com/dxcli/generator-dxcli/compare/acddb1d3cce8b22c580039ae0100cfb1e6457ed6...v1.10.1) (2018-01-15)
 
