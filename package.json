@@ -1,7 +1,7 @@
 {
   "name": "generator-dxcli",
   "description": "dxcli yeoman generator",
-  "version": "1.10.1",
+  "version": "1.10.2",
   "author": "Jeff Dickey",
   "bin": {
     "create-dxcli": "bin/run"
