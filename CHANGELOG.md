@@ -1,3 +1,11 @@
+<a name="1.11.0"></a>
+# [1.11.0](https://github.com/dxcli/generator-dxcli/compare/9dd5b3921a3d21a148e78d12e601913e7cc70137...v1.11.0) (2018-01-16)
+
+
+### Features
+
+* added homepage/bugs/keywords ([f748937](https://github.com/dxcli/generator-dxcli/commit/f748937))
+
 <a name="1.10.5"></a>
 ## [1.10.5](https://github.com/dxcli/generator-dxcli/compare/a7e73bd68cd49c21e326d72c8c6598e9ad0f1d8a...v1.10.5) (2018-01-16)
 
