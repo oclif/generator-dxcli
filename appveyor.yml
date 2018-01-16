@@ -6,6 +6,8 @@ cache:
 
 install:
   - ps: Install-Product node $env:nodejs_version x64
+  - git config --global user.email "dxcli@example.com"
+  - git config --global user.name "dxcli"
   - yarn
 test_script:
   - yarn test
