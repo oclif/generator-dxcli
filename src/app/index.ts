@@ -214,6 +214,9 @@ class App extends Generator {
     this.pjson.scripts.test = this.pjson.scripts.test || 'dxcli-dev test'
     this.pjson.scripts.precommit = this.pjson.scripts.precommit || 'dxcli-dev lint'
     this.pjson.main = this.pjson.main || 'lib/index.js'
+    this.pjson.keywords = this.pjson.keywords || ['dxcli']
+    this.pjson.homepage = this.pjson.homepage || `https://github.com/${this.pjson.repository}`
+    this.pjson.bugs = this.pjson.bugs || `https://github.com/${this.pjson.repository}/issues`
 
     if (this.ts) {
       this.pjson.types = this.pjson.types || 'lib/index.d.ts'
