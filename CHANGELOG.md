@@ -1,3 +1,11 @@
+<a name="1.11.5"></a>
+## [1.11.5](https://github.com/dxcli/generator-dxcli/compare/de31aee3d8457a77a6acbd5e5b51d449e2991a9f...v1.11.5) (2018-01-16)
+
+
+### Bug Fixes
+
+* fix test inclusion in test tsconfig ([ed2526f](https://github.com/dxcli/generator-dxcli/commit/ed2526f))
+
 <a name="1.11.4"></a>
 ## [1.11.4](https://github.com/dxcli/generator-dxcli/compare/77456d20bc3f1b721f1f962a5e408939c2dfc56b...v1.11.4) (2018-01-16)
 
