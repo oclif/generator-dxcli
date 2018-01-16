@@ -1,3 +1,11 @@
+<a name="1.10.4"></a>
+## [1.10.4](https://github.com/dxcli/generator-dxcli/compare/9909a2bd55e6f9b59847a58aff29936fbaa288b9...v1.10.4) (2018-01-16)
+
+
+### Bug Fixes
+
+* add ssh keys ([a7e73bd](https://github.com/dxcli/generator-dxcli/commit/a7e73bd))
+
 <a name="1.10.3"></a>
 ## [1.10.3](https://github.com/dxcli/generator-dxcli/compare/735c64d074a0c24cb913adb4f48575a38fd85b80...v1.10.3) (2018-01-16)
 
