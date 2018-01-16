@@ -19,6 +19,9 @@ if [[ ! -z "$GIT_EMAIL" ]] & [[ ! -z "$GIT_USERNAME" ]]; then
   git config --global user.user "$GIT_USERNAME"
 fi
 
+git submodule sync
+git submodule update --init --recursive
+
 _test() {
   CLI_ENGINE_UTIL_YARN_ARGS="--frozen-lockfile"
 
