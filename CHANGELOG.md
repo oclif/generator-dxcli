@@ -1,3 +1,11 @@
+<a name="1.10.3"></a>
+## [1.10.3](https://github.com/dxcli/generator-dxcli/compare/735c64d074a0c24cb913adb4f48575a38fd85b80...v1.10.3) (2018-01-16)
+
+
+### Bug Fixes
+
+* update git settings ([9909a2b](https://github.com/dxcli/generator-dxcli/commit/9909a2b))
+
 <a name="1.10.2"></a>
 ## [1.10.2](https://github.com/dxcli/generator-dxcli/compare/8b5dc825a89abe1f8557d295e6641c9e9d5a3bc2...v1.10.2) (2018-01-16)
 
