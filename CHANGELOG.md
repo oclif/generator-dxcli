@@ -1,3 +1,11 @@
+<a name="1.11.3"></a>
+## [1.11.3](https://github.com/dxcli/generator-dxcli/compare/v1.11.2...v1.11.3) (2018-01-16)
+
+
+### Bug Fixes
+
+* update submodules in appveyor ([77456d2](https://github.com/dxcli/generator-dxcli/commit/77456d2))
+
 <a name="1.11.1"></a>
 ## [1.11.1](https://github.com/dxcli/generator-dxcli/compare/f74893702ae28477ec38050e64daeb05ab247273...v1.11.1) (2018-01-16)
 
