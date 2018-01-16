@@ -1,3 +1,11 @@
+<a name="1.11.4"></a>
+## [1.11.4](https://github.com/dxcli/generator-dxcli/compare/77456d20bc3f1b721f1f962a5e408939c2dfc56b...v1.11.4) (2018-01-16)
+
+
+### Bug Fixes
+
+* include all files in tsconfig to make src/global.d.ts files work ([de31aee](https://github.com/dxcli/generator-dxcli/commit/de31aee))
+
 <a name="1.11.3"></a>
 ## [1.11.3](https://github.com/dxcli/generator-dxcli/compare/v1.11.2...v1.11.3) (2018-01-16)
 
