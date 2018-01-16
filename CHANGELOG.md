@@ -1,3 +1,11 @@
+<a name="1.11.1"></a>
+## [1.11.1](https://github.com/dxcli/generator-dxcli/compare/f74893702ae28477ec38050e64daeb05ab247273...v1.11.1) (2018-01-16)
+
+
+### Bug Fixes
+
+* added submodule support ([e6fdabd](https://github.com/dxcli/generator-dxcli/commit/e6fdabd))
+
 <a name="1.11.0"></a>
 # [1.11.0](https://github.com/dxcli/generator-dxcli/compare/9dd5b3921a3d21a148e78d12e601913e7cc70137...v1.11.0) (2018-01-16)
 
