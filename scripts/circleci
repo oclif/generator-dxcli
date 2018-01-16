@@ -51,6 +51,7 @@ _test() {
 }
 
 _release() {
+  yarn --frozen-lockfile
   ./node_modules/.bin/dxcli-dev-semantic-release
 }
 
