@@ -37,9 +37,11 @@ jobs:
           yarn
           yarn upgrade --latest generator-dxcli
           yarn test
-          git add package.json yarn.lock
-          git commit -m "feat: updated generator-dxcli"
-          git push
+          if ! git diff-index --quiet HEAD --; then
+            git add package.json yarn.lock
+            git commit -m "feat: updated generator-dxcli"
+            git push
+          fi
 
       - save_cache: *save_cache
 
