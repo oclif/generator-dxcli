@@ -250,6 +250,16 @@ class App extends Generator {
   writing() {
     this.sourceRoot(path.join(__dirname, '../../templates'))
 
+    switch (this.type) {
+      case 'plugin':
+        this.pjson.dxcli = {
+          commands: './lib/commands',
+          ...this.pjson.dxcli,
+        }
+        break
+        default:
+    }
+
     if (this.ts) {
       this.fs.copyTpl(this.templatePath('tslint.json'), this.destinationPath('tslint.json'), this)
       this.fs.writeJSON(this.destinationPath('tsconfig.json'), this.tsconfig)
@@ -283,6 +293,9 @@ class App extends Generator {
     switch (this.type) {
       case 'single':
         this._writeSingle()
+        break
+      case 'plugin':
+        this._writePlugin()
         break
       default:
         this._writeBase()
@@ -319,6 +332,13 @@ class App extends Generator {
     }
     switch (this.type) {
       case 'single':
+        devDependencies.push('@types/read-pkg-up')
+        dependencies.push(
+          '@dxcli/command',
+          'cli-ux',
+        )
+        break
+      case 'plugin':
         devDependencies.push('@types/read-pkg-up')
         dependencies.push(
           '@dxcli/command',
@@ -377,6 +397,14 @@ class App extends Generator {
     this.fs.copyTpl(this.templatePath(`single/src/index.${this._ext}`), this.destinationPath(`src/index.${this._ext}`), this)
     if (this.mocha) {
       this.fs.copyTpl(this.templatePath(`single/test/integration/index.test.${this._ext}`), this.destinationPath(`test/integration/index.test.${this._ext}`), this)
+    }
+  }
+
+  private _writePlugin() {
+    if (!this.fromScratch) return
+    this.fs.copyTpl(this.templatePath(`plugin/src/commands/hello.${this._ext}`), this.destinationPath(`src/commands/hello.${this._ext}`), this)
+    if (this.mocha) {
+      this.fs.copyTpl(this.templatePath(`plugin/test/commands/hello.test.${this._ext}`), this.destinationPath(`test/commands/hello.test.${this._ext}`), this)
     }
   }
 
