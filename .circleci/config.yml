@@ -70,9 +70,9 @@ jobs:
           yarn
           yarn upgrade --latest generator-dxcli
           yarn test
+          VERSION=$(node -p "require('../package.json').version")
+          git add package.json yarn.lock
           if ! git diff-index --quiet HEAD --; then
-            VERSION=$(node -p "require('../package.json').version")
-            git add package.json yarn.lock
             git commit -m "feat: generator-dxcli@$VERSION"
             git push
           fi
