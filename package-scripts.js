@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const {concurrent} = require('nps-utils')
+const {concurrent, series} = require('nps-utils')
 
 const types = ['base', 'single']
 
@@ -15,7 +15,7 @@ module.exports = {
     },
     test: {
       default: {
-        script: concurrent.nps('lint', 'test.single', 'test.base'),
+        script: series.nps('lint', 'test.single', 'test.base'),
         description: 'lint and run all tests',
       },
       ..._.zipObject(types, types.map(type => ({

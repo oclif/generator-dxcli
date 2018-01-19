@@ -12,7 +12,20 @@ install:
   - git config --global user.name "dxcli"
   - yarn
 test_script:
-  - yarn test
+  - >
+    npx nps
+      lint
+      test.base.everything
+      test.base.mocha
+      test.base.plain
+      test.base.semantic-release
+      test.base.typescript
+      test.single.everything
+      test.single.mocha
+      test.single.plain
+      test.single.semantic-release
+      test.single.typescript
+
 after_test:
   - ps: |
       $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
