@@ -1,3 +1,16 @@
+<a name="1.12.0"></a>
+# [1.12.0](https://github.com/dxcli/generator-dxcli/compare/ed2526fa67934c3012eeeffe81e9e662be148aa3...v1.12.0) (2018-01-19)
+
+
+### Bug Fixes
+
+* added release ([93cc8f8](https://github.com/dxcli/generator-dxcli/commit/93cc8f8))
+
+
+### Features
+
+* added single generator ([51f76a1](https://github.com/dxcli/generator-dxcli/commit/51f76a1))
+
 <a name="1.11.5"></a>
 ## [1.11.5](https://github.com/dxcli/generator-dxcli/compare/de31aee3d8457a77a6acbd5e5b51d449e2991a9f...v1.11.5) (2018-01-16)
 
