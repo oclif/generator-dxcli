@@ -82,12 +82,16 @@ workflows:
   version: 2
   "generator-dxcli":
     jobs:
-      - node-latest
-      - node-8
+      - node-latest-base
+      - node-latest-single
+      - node-8-base
+      - node-8-single
       - release:
           context: org-global
           filters:
             branches: {only: master}
           requires:
-            - node-latest
-            - node-8
+            - node-latest-base
+            - node-latest-single
+            - node-8-base
+            - node-8-single
