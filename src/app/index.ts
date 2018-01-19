@@ -9,6 +9,7 @@ import yosay = require('yosay')
 const sortPjson = require('sort-pjson')
 const fixpack = require('fixpack')
 const debug = require('debug')('generator-dxcli')
+const {version} = require('../../package.json')
 
 function stringToArray(s: string) {
   const keywords: string[] = []
@@ -27,14 +28,14 @@ function stringToArray(s: string) {
 class App extends Generator {
   options: {defaults: boolean}
   args: {[k: string]: string}
-  type: 'base'
+  type: 'single' | 'multi' | 'plugin' | 'base'
   path: string
   pjson: any
   tsconfig: any
   fromScratch: boolean
   githubUser: string | undefined
   answers: {
-    appname: string
+    name: string
     description: string
     version: string
     engines: {node: string}
@@ -42,185 +43,187 @@ class App extends Generator {
     author: string
     files: string
     license: string
-    repository: string
     options: {
       mocha: boolean,
-      typescript: boolean,
-      'semantic-release': boolean,
+        typescript: boolean,
+        'semantic-release': boolean,
     }
   }
   mocha: boolean
   semantic_release: boolean
   ts: boolean
-  get _ext() {
-    return this.ts ? 'ts' : 'js'
-  }
+  get _ext() { return this.ts ? 'ts' : 'js' }
 
   constructor(args: any, opts: any) {
     super(args, opts)
 
     this.option('defaults', {description: 'use default values for everything'})
-    // const types = ['base']
+    const types = ['single', 'multi', 'plugin', 'base']
     this.argument('type', {type: String, required: false})
     this.argument('path', {type: String, required: false})
     this.type = opts.type || this.args.type
     this.path = opts.path || this.args.path
-    if (!this.type) throw new Error('Usage: yo dxcli (single|multi|plugin|base)')
+    if (!types.includes(this.type)) throw new Error(`Usage: yarn create dxcli (${types.join('|')})`)
   }
 
   async prompting() {
     if (process.env.DXCLI_CREATE_DEFAULTS === '1') this.options.defaults = true
-    this.log(yosay(
-      `Time to build a dxcli ${this.type}! Version: ${require('../../package.json').version}`
-    ))
+    let msg
+    switch (this.type) {
+      case 'single':
+        msg = 'Time to build a single command CLI with dxcli!'
+        break
+      case 'multi':
+        msg = 'Time to build a multi command CLI with dxcli!'
+        break
+      default:
+        msg = `Time to build a dxcli ${this.type}!`
+    }
+    this.log(yosay(`${msg} Version: ${version}`))
 
     if (this.path) {
       this.destinationRoot(path.resolve(this.path))
       process.chdir(this.destinationRoot())
     }
     this.githubUser = await this.user.github.username().catch(debug)
-    this.pjson = this.fs.readJSON('package.json', {})
-    this.fromScratch = Object.keys(this.pjson).length === 0
-    this.pjson.name = this.pjson.name || this.determineAppname().replace(/ /, '-')
-    this.pjson.version = this.pjson.version || '0.0.0'
-    this.pjson.license = this.pjson.license || 'MIT'
-    this.pjson.author = this.pjson.author || (this.githubUser ? `${this.user.git.name()} @${this.githubUser}` : this.user.git.name())
-    this.pjson.engines = this.pjson.engines || {}
-    this.pjson.engines.node = this.pjson.engines.node || '>=8.0.0'
-    this.pjson.dependencies = this.pjson.dependencies || {}
-    this.pjson.devDependencies = this.pjson.devDependencies || {}
-    this.pjson.dxcli = this.pjson.dxcli || {}
-    this.pjson.dxcli.workflows = this.pjson.dxcli.workflows || {}
-    this.pjson.dxcli.workflows.test = this.pjson.dxcli.workflows.test || []
-    this.pjson.dxcli.workflows.lint = this.pjson.dxcli.workflows.lint || []
-    this.pjson.scripts = this.pjson.scripts || {}
-    if (this.options.defaults) {
-      this.pjson.repository = this.destinationRoot().split(path.sep).slice(-2).join('/')
-      this.ts = true
-      this.mocha = true
-      this.semantic_release = true
-
-      return
+    this.pjson = {
+      scripts: {},
+      engines: {},
+      devDependencies: {},
+      dependencies: {},
+      ...this.fs.readJSON('package.json', {}),
     }
-    this.answers = await this.prompt([
-      {
-        type: 'input',
-        name: 'appname',
-        message: 'npm package name',
-        default: this.pjson.name,
-        when: this.fromScratch,
+    let repository = this.destinationRoot().split(path.sep).slice(-2).join('/')
+    if (this.githubUser) repository = `${this.githubUser}/${repository.split('/')[1]}`
+    const defaults = {
+      name: this.determineAppname().replace(/ /g, '-'),
+      version: '0.0.0',
+      license: 'MIT',
+      author: this.githubUser ? `${this.user.git.name()} @${this.githubUser}` : this.user.git.name(),
+      dependencies: {},
+      repository,
+      ...this.pjson,
+      engines: {
+        node: '>=8.0.0',
+        ...this.pjson.engines,
       },
-      {
-        type: 'input',
-        name: 'description',
-        message: 'description',
-        default: this.pjson.description,
-        when: this.fromScratch || !this.pjson.description,
-      },
-      {
-        type: 'input',
-        name: 'author',
-        message: 'author',
-        default: this.pjson.author,
-        when: this.fromScratch || !this.pjson.author,
-      },
-      {
-        type: 'input',
-        name: 'version',
-        message: 'version',
-        default: this.pjson.version,
-        when: this.fromScratch || !this.pjson.version,
-      },
-      {
-        type: 'input',
-        name: 'license',
-        message: 'license',
-        default: this.pjson.license,
-        when: this.fromScratch || !this.pjson.license,
-      },
-      {
-        type: 'input',
-        name: 'engines.node',
-        message: 'node version supported',
-        default: this.pjson.engines.node,
-        when: this.fromScratch || !this.pjson.engines.node,
-      },
-      {
-        type: 'input',
-        name: 'github.user',
-        message: 'github owner of repository (https://github.com/OWNER/repo)',
-        default: this.pjson.repository ? this.pjson.repository.split('/').slice(0, -1).pop() : this.githubUser,
-        when: this.fromScratch || !this.pjson.repository,
-      },
-      {
-        type: 'input',
-        name: 'github.repo',
-        message: 'github name of repository (https://github.com/owner/REPO)',
-        default: (answers: any) => (this.pjson.repository ? this.pjson.repository : answers.appname).split('/').pop(),
-        when: this.fromScratch || !this.pjson.repository,
-      },
-      {
-        type: 'input',
-        name: 'repository',
-        message: 'repository',
-        default: (answers: any) => this.pjson.repository ? this.pjson.repository : `${answers.github.user}/${answers.github.repo}`,
-        when: this.fromScratch || !this.pjson.repository,
-      },
-      {
-        type: 'checkbox',
-        name: 'options',
-        message: 'components to include',
-        choices: [
-          {name: 'typescript', checked: this.fromScratch ? true : !!this.pjson.devDependencies.typescript},
-          {name: 'semantic-release', checked: this.fromScratch ? true : !!this.pjson.devDependencies['@dxcli/dev-semantic-release']},
-          {name: 'mocha', checked: this.fromScratch ? true : !!this.pjson.devDependencies.mocha},
-        ],
-        filter: ((arr: string[]) => _.keyBy(arr)) as any,
-      },
-      {
-        type: 'string',
-        name: 'files',
-        message: 'npm files to pack',
-        default: this.pjson.files ? this.pjson.files.join(',') : '/lib',
-        filter: stringToArray as any,
-        when: this.fromScratch || !this.pjson.repository,
-      },
-    ]) as any
-    if (!this.answers.github && this.pjson.repository) {
-      const [user, repo] = this.pjson.repository.split('/').slice(-2)
-      this.answers.github = {user, repo}
+    }
+    this.fromScratch = Object.keys(this.pjson.dependencies).length === 0
+    if (this.options.defaults) {
+      this.answers = {
+        ...defaults,
+        options: {
+          typescript: process.env.DXCLI_CREATE_TYPESCRIPT === '1',
+          mocha: process.env.DXCLI_CREATE_MOCHA === '1',
+          'semantic-release': process.env.DXCLI_CREATE_SEMANTIC_RELEASE === '1',
+        },
+      }
+    } else {
+      this.answers = await this.prompt([
+        {
+          type: 'input',
+          name: 'name',
+          message: 'npm package name',
+          default: defaults.name,
+          when: !this.pjson.name,
+        },
+        {
+          type: 'input',
+          name: 'description',
+          message: 'description',
+          default: defaults.description,
+          when: !this.pjson.description,
+        },
+        {
+          type: 'input',
+          name: 'author',
+          message: 'author',
+          default: defaults.author,
+          when: !this.pjson.author,
+        },
+        {
+          type: 'input',
+          name: 'version',
+          message: 'version',
+          default: defaults.version,
+          when: !this.pjson.version,
+        },
+        {
+          type: 'input',
+          name: 'license',
+          message: 'license',
+          default: defaults.license,
+          when: !this.pjson.license,
+        },
+        {
+          type: 'input',
+          name: 'engines.node',
+          message: 'node version supported',
+          default: defaults.engines.node,
+          when: !this.pjson.engines.node,
+        },
+        {
+          type: 'input',
+          name: 'github.user',
+          message: 'github owner of repository (https://github.com/OWNER/repo)',
+          default: defaults.repository.split('/').slice(0, -1).pop(),
+          when: !this.pjson.repository,
+        },
+        {
+          type: 'input',
+          name: 'github.repo',
+          message: 'github name of repository (https://github.com/owner/REPO)',
+          default: (answers: any) => (this.pjson.repository ? this.pjson.repository : answers.name).split('/').pop(),
+          when: !this.pjson.repository,
+        },
+        {
+          type: 'checkbox',
+          name: 'options',
+          message: 'components to include',
+          choices: [
+            {name: 'typescript', checked: this.fromScratch ? true : !!this.pjson.devDependencies.typescript},
+            {name: 'semantic-release', checked: this.fromScratch ? true : !!this.pjson.devDependencies['@dxcli/dev-semantic-release']},
+            {name: 'mocha', checked: this.fromScratch ? true : !!this.pjson.devDependencies.mocha},
+          ],
+          filter: ((arr: string[]) => _.keyBy(arr)) as any,
+        },
+        {
+          type: 'string',
+          name: 'files',
+          message: 'npm files to pack',
+          default: (answers: any) => answers.options.typescript ? '/lib' : '/src',
+          filter: stringToArray as any,
+          when: this.fromScratch,
+        },
+      ]) as any
     }
     debug(this.answers)
     this.ts = this.answers.options.typescript
     this.mocha = this.answers.options.mocha
     this.semantic_release = this.answers.options['semantic-release']
 
-    this.pjson.name = this.answers.appname || this.pjson.name
-    this.pjson.description = this.answers.description || this.pjson.description
-    this.pjson.version = this.answers.version || this.pjson.version
-    this.pjson.engines.node = this.answers.engines ? this.answers.engines.node : this.pjson.engines.node
-    this.pjson.author = this.answers.author || this.pjson.author
-    this.pjson.files = this.answers.files || this.pjson.files
-    this.pjson.license = this.answers.license || this.pjson.license
-    this.pjson.repository = this.answers.repository || this.pjson.repository
-  }
+    this.pjson.name = this.answers.name || defaults.name
+    this.pjson.description = this.answers.description || defaults.description
+    this.pjson.version = this.answers.version || defaults.version
+    this.pjson.engines.node = this.answers.engines ? this.answers.engines.node : defaults.engines.node
+    this.pjson.author = this.answers.author || defaults.author
+    this.pjson.files = this.answers.files || defaults.files || [(this.ts ? '/lib' : '/src')]
+    this.pjson.license = this.answers.license || defaults.license
+    this.pjson.repository = this.answers.github ? `${this.answers.github.user}/${this.answers.github.repo}` : defaults.repository
+    this.pjson.scripts.test = defaults.scripts.test || 'nps test'
+    this.pjson.scripts.precommit = defaults.scripts.precommit || 'nps lint'
+    this.pjson.keywords = defaults.keywords || [this.type === 'plugin' ? 'dxcli-plugin' : 'dxcli']
+    this.pjson.homepage = defaults.homepage || `https://github.com/${defaults.repository}`
+    this.pjson.bugs = defaults.bugs || `https://github.com/${defaults.repository}/issues`
 
-  writing() {
-    this.sourceRoot(path.join(__dirname, '../../templates'))
-    const {test, lint} = this.pjson.dxcli.workflows
-    if (!lint.find((c: string) => c.startsWith('eslint'))) lint.push('eslint .')
-    if (!test.find((c: string) => c.startsWith('eslint'))) test.push('eslint .')
-    this.pjson.scripts.lint = this.pjson.scripts.lint || 'dxcli-dev lint'
-    this.pjson.scripts.test = this.pjson.scripts.test || 'dxcli-dev test'
-    this.pjson.scripts.precommit = this.pjson.scripts.precommit || 'dxcli-dev lint'
-    this.pjson.main = this.pjson.main || 'lib/index.js'
-    this.pjson.keywords = this.pjson.keywords || ['dxcli']
-    this.pjson.homepage = this.pjson.homepage || `https://github.com/${this.pjson.repository}`
-    this.pjson.bugs = this.pjson.bugs || `https://github.com/${this.pjson.repository}/issues`
-
+    if (this.type !== 'plugin') {
+      this.pjson.main = defaults.main || (this.ts ? 'lib/index.js' : 'src/index.js')
+      if (this.ts) {
+        this.pjson.types = defaults.types || 'lib/index.d.ts'
+      }
+    }
     if (this.ts) {
-      this.pjson.types = this.pjson.types || 'lib/index.d.ts'
-      this.fs.copyTpl(this.templatePath('tslint.json'), this.destinationPath('tslint.json'), this)
+      this.pjson.scripts.prepare = defaults.scripts.prepare || 'nps build'
       this.tsconfig = this.fs.readJSON(this.destinationPath('tsconfig.json'), {
         compilerOptions: {
           declaration: true,
@@ -238,47 +241,35 @@ class App extends Generator {
           'src/**/*'
         ]
       })
-      this.fs.writeJSON(this.destinationPath('tsconfig.json'), this.tsconfig)
-      this.pjson.scripts.prepare = this.pjson.scripts.prepare || `rm -rf ${this._tsOutDir!.replace(/^\//, '')} && tsc`
-      if (this.mocha) {
-        if (!lint.find((c: string) => c.startsWith('tsc'))) lint.push('tsc -p test --noEmit')
-        if (!test.find((c: string) => c.startsWith('tsc'))) test.push('tsc -p test --noEmit')
-        if (!lint.find((c: string) => c.startsWith('tslint'))) lint.push('tslint -p test')
-        if (!test.find((c: string) => c.startsWith('tslint'))) test.push('tslint -p test')
-        this.fs.copyTpl(this.templatePath('test/tsconfig.json'), this.destinationPath('test/tsconfig.json'), this)
-      } else {
-        if (!lint.find((c: string) => c.startsWith('tsc'))) lint.push('tsc --noEmit')
-        if (!test.find((c: string) => c.startsWith('tsc'))) test.push('tsc --noEmit')
-        if (!lint.find((c: string) => c.startsWith('tslint'))) lint.push('tslint -p .')
-        if (!test.find((c: string) => c.startsWith('tslint'))) test.push('tslint -p .')
-      }
     }
     if (this.semantic_release) {
-      this.pjson.scripts.commitmsg = this.pjson.scripts.commitmsg || 'dxcli-dev-commitmsg'
-      if (!lint.find((c: string) => c.startsWith('commitlint'))) lint.push('commitlint --from origin/master')
-      if (!test.find((c: string) => c.startsWith('commitlint'))) test.push('commitlint --from origin/master')
+      this.pjson.scripts.commitmsg = defaults.scripts.commitmsg || 'dxcli-dev-commitmsg'
+    }
+  }
+
+  writing() {
+    this.sourceRoot(path.join(__dirname, '../../templates'))
+
+    if (this.ts) {
+      this.fs.copyTpl(this.templatePath('tslint.json'), this.destinationPath('tslint.json'), this)
+      this.fs.writeJSON(this.destinationPath('tsconfig.json'), this.tsconfig)
+      if (this.mocha) {
+        this.fs.copyTpl(this.templatePath('test/tsconfig.json'), this.destinationPath('test/tsconfig.json'), this)
+      }
     }
     if (this.mocha) {
-      if (!test.find((c: string) => c.startsWith('mocha'))) test.push('mocha "test/**/*.ts"')
-      if (this.fromScratch) {
-        this.fs.copyTpl(this.templatePath('test/helpers/init.js'), this.destinationPath('test/helpers/init.js'), this)
-        this.fs.copyTpl(this.templatePath('test/mocha.opts'), this.destinationPath('test/mocha.opts'), this)
-        this.fs.copyTpl(this.templatePath(`test/index.test.${this._ext}`), this.destinationPath(`test/index.test.${this._ext}`), this)
-      }
+      this.fs.copyTpl(this.templatePath('test/helpers/init.js'), this.destinationPath('test/helpers/init.js'), this)
+      this.fs.copyTpl(this.templatePath('test/mocha.opts'), this.destinationPath('test/mocha.opts'), this)
     }
     if (this.fs.exists(this.destinationPath('./package.json'))) {
       fixpack(this.destinationPath('./package.json'), require('fixpack/config.json'))
     }
     this.fs.writeJSON(this.destinationPath('./package.json'), sortPjson(this.pjson))
-    // fixpack(this.destinationPath('./package.json'), require('fixpack/config.json'))
     this.fs.copyTpl(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'), this)
-    this.fs.copyTpl(this.templatePath('scripts/circleci'), this.destinationPath('scripts/circleci'), this)
+    this.fs.copyTpl(this.templatePath('scripts/circleci.ejs'), this.destinationPath('scripts/circleci'), this)
     this.fs.copyTpl(this.templatePath('README.md.ejs'), this.destinationPath('README.md'), this)
     this.fs.copyTpl(this.templatePath('circle.yml.ejs'), this.destinationPath('.circleci/config.yml'), this)
     this.fs.copyTpl(this.templatePath('appveyor.yml'), this.destinationPath('appveyor.yml'), this)
-    if (this.fromScratch) {
-      this.fs.copyTpl(this.templatePath(`src/index.${this._ext}`), this.destinationPath(`src/index.${this._ext}`), this)
-    }
 
     // git
     if (this.fromScratch) this.spawnCommandSync('git', ['init'])
@@ -287,21 +278,32 @@ class App extends Generator {
     this.fs.write(this.destinationPath('.gitignore'), this._gitignore())
     this.fs.copyTpl(this.templatePath('eslintrc'), this.destinationPath('.eslintrc'), this)
     this.fs.write(this.destinationPath('.eslintignore'), this._eslintignore())
+    this.fs.copyTpl(this.templatePath('package-scripts.js.ejs'), this.destinationPath('package-scripts.js'), this)
+
+    switch (this.type) {
+      case 'single':
+        this._writeSingle()
+        break
+      default:
+        this._writeBase()
+    }
   }
 
   install() {
     const dependencies: string[] = []
     const devDependencies = [
-      '@dxcli/dev',
+      'nps',
+      'nps-utils',
       'husky',
       'eslint-config-dxcli',
       'eslint',
-      'nyc',
     ]
     if (this.mocha) {
       devDependencies.push(
         '@dxcli/dev-test',
+        'cross-env',
         'mocha',
+        'nyc',
       )
     }
     if (this.ts) {
@@ -309,19 +311,25 @@ class App extends Generator {
         'typescript',
         '@dxcli/dev-tslint',
         '@types/node',
+        'ts-node',
       )
-      if (this.mocha) {
-        devDependencies.push(
-          'ts-node',
-        )
-      }
     }
     if (this.semantic_release) {
       devDependencies.push('@dxcli/dev-semantic-release')
     }
+    switch (this.type) {
+      case 'single':
+        devDependencies.push('@types/read-pkg-up')
+        dependencies.push(
+          '@dxcli/command',
+          'cli-ux',
+        )
+        break
+        default:
+    }
     Promise.all([
-      this.yarnInstall(devDependencies, {dev: true}),
-      dependencies.length ? this.yarnInstall(dependencies) : Promise.resolve(),
+      this.yarnInstall(devDependencies, {dev: true, ignoreScripts: true}),
+      this.yarnInstall(dependencies),
     ]).then(() => {
       console.log(`\nCreated ${this.pjson.name} in ${this.destinationRoot()}`)
     })
@@ -361,6 +369,23 @@ class App extends Generator {
       .uniq()
       .sort()
       .join('\n') + '\n'
+  }
+
+  private _writeSingle() {
+    if (!this.fromScratch) return
+    this.fs.copyTpl(this.templatePath(`single/bin/run.${this._ext}`), this.destinationPath('bin/run'), this)
+    this.fs.copyTpl(this.templatePath(`single/src/index.${this._ext}`), this.destinationPath(`src/index.${this._ext}`), this)
+    if (this.mocha) {
+      this.fs.copyTpl(this.templatePath(`single/test/integration/index.test.${this._ext}`), this.destinationPath(`test/integration/index.test.${this._ext}`), this)
+    }
+  }
+
+  private _writeBase() {
+    if (!this.fromScratch) return
+    this.fs.copyTpl(this.templatePath(`base/src/index.${this._ext}`), this.destinationPath(`src/index.${this._ext}`), this)
+    if (this.mocha) {
+      this.fs.copyTpl(this.templatePath(`base/test/integration/index.test.${this._ext}`), this.destinationPath(`test/integration/index.test.${this._ext}`), this)
+    }
   }
 }
 
