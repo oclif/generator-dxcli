@@ -45,5 +45,11 @@ module.exports = {
         },
       }))),
     },
+    ci: {
+      release: {
+        script: 'yarn --frozen-lockfile && dxcli-dev-semantic-release',
+        hiddenFromHelp: true,
+      },
+    },
   },
 }
