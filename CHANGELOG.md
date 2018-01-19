@@ -1,3 +1,11 @@
+<a name="1.13.0"></a>
+# [1.13.0](https://github.com/dxcli/generator-dxcli/compare/152d909d7294449ad767f0a01eb2ee4d67bf4221...v1.13.0) (2018-01-19)
+
+
+### Features
+
+* added plugin generator ([597342a](https://github.com/dxcli/generator-dxcli/commit/597342a))
+
 <a name="1.12.3"></a>
 ## [1.12.3](https://github.com/dxcli/generator-dxcli/compare/45718be254cf932e1783ff92641f5d3f4fb3e7c4...v1.12.3) (2018-01-19)
 
