@@ -17,8 +17,8 @@ class CLI extends Command {
     sh.set('-ev')
     const {type} = this.args
     let dir = path.join(__dirname, '../tmp', ['test', type, ...Object.keys(this.flags)].join('-'))
-    console.log(`\ntesting ${type}`)
-    console.log(`--------${'-'.repeat(type.length)}`)
+    console.log(`\ntesting ${dir}`)
+    console.log(`--------${'-'.repeat(dir.length)}`)
     sh.exec('tsc')
     sh.rm('-rf', dir)
     sh.exec(`node bin/run ${type} ${dir}`)
