@@ -1,7 +1,7 @@
 const _ = require('lodash')
 const {concurrent, series} = require('nps-utils')
 
-const types = ['base', 'single', 'plugin']
+const types = ['base', 'single', 'plugin', 'multi']
 
 module.exports = {
   scripts: {

@@ -41,6 +41,15 @@ jobs:
       - run: npx nps test.plugin
       - store_test_results: *store_test_results
       - save_cache: *save_cache
+  node-latest-multi:
+    <<: *test
+    steps:
+      - checkout
+      - restore_cache: *restore_cache
+      - run: ./scripts/circleci
+      - run: npx nps test.multi
+      - store_test_results: *store_test_results
+      - save_cache: *save_cache
   node-8-base:
     <<: *test
     docker:
@@ -75,6 +84,17 @@ jobs:
       - run: npx nps test.plugin
       - store_test_results: *store_test_results
       - save_cache: *save_cache
+  node-8-multi:
+    <<: *test
+    docker:
+      - image: node:8
+    steps:
+      - checkout
+      - restore_cache: *restore_cache
+      - run: ./scripts/circleci
+      - run: npx nps test.multi
+      - store_test_results: *store_test_results
+      - save_cache: *save_cache
 
   release:
     <<: *test
@@ -106,9 +126,11 @@ workflows:
       - node-latest-base
       - node-latest-single
       - node-latest-plugin
+      - node-latest-multi
       - node-8-base
       - node-8-single
       - node-8-plugin
+      - node-8-multi
       - release:
           context: org-global
           filters:
@@ -117,6 +139,8 @@ workflows:
             - node-latest-base
             - node-latest-single
             - node-latest-plugin
+            - node-latest-multi
             - node-8-base
             - node-8-single
             - node-8-plugin
+            - node-8-multi

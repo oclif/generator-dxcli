@@ -32,6 +32,10 @@ class CLI extends Command {
       case 'single':
         sh.exec('node ./bin/run')
         break
+      case 'multi':
+        sh.exec('node ./bin/run version')
+        sh.exec('node ./bin/run hello')
+        break
       default:
     }
   }

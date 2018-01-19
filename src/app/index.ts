@@ -233,9 +233,11 @@ class App extends Generator {
           noUnusedLocals: true,
           noUnusedParameters: true,
           outDir: './lib',
-          rootDir: './src',
+          rootDirs: ['./src'],
+          sourceMap: true,
           strict: true,
-          target: 'es2017'
+          strictFunctionTypes: false, // breaks rxjs
+          target: 'es2017',
         },
         include: [
           'src/**/*'
@@ -251,13 +253,19 @@ class App extends Generator {
     this.sourceRoot(path.join(__dirname, '../../templates'))
 
     switch (this.type) {
+      case 'multi':
       case 'plugin':
         this.pjson.dxcli = {
-          commands: './lib/commands',
+          commands: `./${this.ts ? 'lib' : 'src'}/commands`,
           ...this.pjson.dxcli,
         }
         break
         default:
+    }
+    if (this.type === 'multi' && !this.pjson.dxcli.plugins) {
+      this.pjson.dxcli.plugins = [
+        '@dxcli/version',
+      ]
     }
 
     if (this.ts) {
@@ -276,7 +284,7 @@ class App extends Generator {
     }
     this.fs.writeJSON(this.destinationPath('./package.json'), sortPjson(this.pjson))
     this.fs.copyTpl(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'), this)
-    this.fs.copyTpl(this.templatePath('scripts/circleci.ejs'), this.destinationPath('scripts/circleci'), this)
+    this.fs.copyTpl(this.templatePath('scripts/circleci.ejs'), this.destinationPath('.circleci/test'), this)
     this.fs.copyTpl(this.templatePath('README.md.ejs'), this.destinationPath('README.md'), this)
     this.fs.copyTpl(this.templatePath('circle.yml.ejs'), this.destinationPath('.circleci/config.yml'), this)
     this.fs.copyTpl(this.templatePath('appveyor.yml'), this.destinationPath('appveyor.yml'), this)
@@ -296,6 +304,9 @@ class App extends Generator {
         break
       case 'plugin':
         this._writePlugin()
+        break
+      case 'multi':
+        this._writeMulti()
         break
       default:
         this._writeBase()
@@ -330,22 +341,18 @@ class App extends Generator {
     if (this.semantic_release) {
       devDependencies.push('@dxcli/dev-semantic-release')
     }
-    switch (this.type) {
-      case 'single':
-        devDependencies.push('@types/read-pkg-up')
+    if (this.type === 'multi') {
+      dependencies.push(
+        '@dxcli/engine',
+        '@dxcli/version',
+      )
+    }
+    if (['plugin', 'single', 'multi'].includes(this.type)) {
+        devDependencies.push('@types/read-pkg')
         dependencies.push(
           '@dxcli/command',
           'cli-ux',
         )
-        break
-      case 'plugin':
-        devDependencies.push('@types/read-pkg-up')
-        dependencies.push(
-          '@dxcli/command',
-          'cli-ux',
-        )
-        break
-        default:
     }
     Promise.all([
       this.yarnInstall(devDependencies, {dev: true, ignoreScripts: true}),
@@ -400,9 +407,22 @@ class App extends Generator {
     }
   }
 
+  private _writeMulti() {
+    if (!this.fromScratch) return
+    this.fs.copyTpl(this.templatePath(`multi/bin/run.${this._ext}`), this.destinationPath('bin/run'), this)
+    this.fs.copyTpl(this.templatePath(`multi/src/index.${this._ext}`), this.destinationPath(`src/index.${this._ext}`), this)
+    this.fs.copyTpl(this.templatePath(`multi/src/commands/hello.${this._ext}`), this.destinationPath(`src/commands/hello.${this._ext}`), this)
+    if (this.mocha) {
+      this.fs.copyTpl(this.templatePath(`multi/test/commands/hello.test.${this._ext}`), this.destinationPath(`test/commands/hello.test.${this._ext}`), this)
+    }
+  }
+
   private _writePlugin() {
     if (!this.fromScratch) return
     this.fs.copyTpl(this.templatePath(`plugin/src/commands/hello.${this._ext}`), this.destinationPath(`src/commands/hello.${this._ext}`), this)
+    if (this.ts) {
+      this.fs.copyTpl(this.templatePath('plugin/src/index.ts'), this.destinationPath('src/index.ts'), this)
+    }
     if (this.mocha) {
       this.fs.copyTpl(this.templatePath(`plugin/test/commands/hello.test.${this._ext}`), this.destinationPath(`test/commands/hello.test.${this._ext}`), this)
     }
