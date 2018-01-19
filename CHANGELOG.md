@@ -1,3 +1,11 @@
+<a name="1.12.2"></a>
+## [1.12.2](https://github.com/dxcli/generator-dxcli/compare/c79500315a01fa865ecfaed30fbb2f25f5852c12...v1.12.2) (2018-01-19)
+
+
+### Bug Fixes
+
+* fix path to nps ([208c400](https://github.com/dxcli/generator-dxcli/commit/208c400))
+
 <a name="1.12.1"></a>
 ## [1.12.1](https://github.com/dxcli/generator-dxcli/compare/d7ad15d7d733ae0c6dbd1d6ea0ea057b1970e2d4...v1.12.1) (2018-01-19)
 
