@@ -1,3 +1,11 @@
+<a name="1.12.1"></a>
+## [1.12.1](https://github.com/dxcli/generator-dxcli/compare/d7ad15d7d733ae0c6dbd1d6ea0ea057b1970e2d4...v1.12.1) (2018-01-19)
+
+
+### Bug Fixes
+
+* increase mocha timeout ([c795003](https://github.com/dxcli/generator-dxcli/commit/c795003))
+
 <a name="1.12.0"></a>
 # [1.12.0](https://github.com/dxcli/generator-dxcli/compare/ed2526fa67934c3012eeeffe81e9e662be148aa3...v1.12.0) (2018-01-19)
 
