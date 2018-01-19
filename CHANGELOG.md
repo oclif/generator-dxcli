@@ -1,3 +1,11 @@
+<a name="1.12.3"></a>
+## [1.12.3](https://github.com/dxcli/generator-dxcli/compare/45718be254cf932e1783ff92641f5d3f4fb3e7c4...v1.12.3) (2018-01-19)
+
+
+### Bug Fixes
+
+* run yarn before release ([152d909](https://github.com/dxcli/generator-dxcli/commit/152d909))
+
 <a name="1.12.2"></a>
 ## [1.12.2](https://github.com/dxcli/generator-dxcli/compare/c79500315a01fa865ecfaed30fbb2f25f5852c12...v1.12.2) (2018-01-19)
 
