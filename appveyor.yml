@@ -1,5 +1,8 @@
 environment:
   nodejs_version: "9"
+  matrix:
+    - TEST_TYPE: base
+    - TEST_TYPE: single
 cache:
   - '%LOCALAPPDATA%\Yarn -> appveyor.yml'
   - node_modules -> yarn.lock
@@ -12,19 +15,12 @@ install:
   - git config --global user.name "dxcli"
   - yarn
 test_script:
-  - >
-      npx nps
-      lint
-      test.base.everything
-      test.base.mocha
-      test.base.plain
-      test.base.semantic-release
-      test.base.typescript
-      test.single.everything
-      test.single.mocha
-      test.single.plain
-      test.single.semantic-release
-      test.single.typescript
+  - npx nps lint
+  - npx nps test.%TEST_TYPE%.everything
+  - npx nps test.%TEST_TYPE%.mocha
+  - npx nps test.%TEST_TYPE%.plain
+  - npx nps test.%TEST_TYPE%.semantic-release
+  - npx nps test.%TEST_TYPE%.typescript
 
 after_test:
   - ps: |
