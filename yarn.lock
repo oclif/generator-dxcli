@@ -1089,6 +1089,23 @@ cli-table@^0.3.1:
   dependencies:
     colors "1.0.3"
 
+cli-ux@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/cli-ux/-/cli-ux-3.0.0.tgz#2dcd032c7e944f77b8d7b4d533f8c75443ac88fd"
+  dependencies:
+    "@dxcli/screen" "^0.0.0"
+    "@heroku/linewrap" "^1.0.0"
+    ansi-styles "^3.2.0"
+    cardinal "^1.0.0"
+    chalk "^2.3.0"
+    fs-extra "^5.0.0"
+    lodash "^4.17.4"
+    password-prompt "^1.0.3"
+    rxjs "^5.5.6"
+    semver "^5.5.0"
+    strip-ansi "^4.0.0"
+    supports-color "^5.1.0"
+
 cli-ux@^2.0.21:
   version "2.0.21"
   resolved "https://registry.yarnpkg.com/cli-ux/-/cli-ux-2.0.21.tgz#a7231097af95356e79f5d6a380f04be889703083"
@@ -4938,6 +4955,10 @@ semver@5.3.0:
 semver@^4.0.3:
   version "4.3.6"
   resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
+
+semver@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
 set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"
