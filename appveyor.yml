@@ -13,7 +13,7 @@ install:
   - yarn
 test_script:
   - >
-    npx nps
+      npx nps
       lint
       test.base.everything
       test.base.mocha
