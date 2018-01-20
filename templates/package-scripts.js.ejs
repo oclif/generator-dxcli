@@ -101,7 +101,7 @@ module.exports = {
 <%_ } _%>
 <%_ if (semantic_release) { _%>
       release: {
-        script: 'yarn --frozen-lockfile && dxcli-dev-semantic-release',
+        script: 'dxcli-dev-semantic-release',
         hiddenFromHelp: true,
       },
 <%_ } _%>
