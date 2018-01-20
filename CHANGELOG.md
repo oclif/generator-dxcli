@@ -1,3 +1,11 @@
+<a name="1.14.0"></a>
+# [1.14.0](https://github.com/dxcli/generator-dxcli/compare/597342a4e61a510edbfd06dda457efa471e5efc8...v1.14.0) (2018-01-20)
+
+
+### Features
+
+* added multi generator ([7332220](https://github.com/dxcli/generator-dxcli/commit/7332220))
+
 <a name="1.13.0"></a>
 # [1.13.0](https://github.com/dxcli/generator-dxcli/compare/152d909d7294449ad767f0a01eb2ee4d67bf4221...v1.13.0) (2018-01-19)
 
