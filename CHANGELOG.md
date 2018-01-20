@@ -1,3 +1,11 @@
+<a name="1.14.2"></a>
+## [1.14.2](https://github.com/dxcli/generator-dxcli/compare/20cabd66a52eddaf429d12d687e122a1cce966d0...v1.14.2) (2018-01-20)
+
+
+### Bug Fixes
+
+* remove extra yarn call ([dd5d689](https://github.com/dxcli/generator-dxcli/commit/dd5d689))
+
 <a name="1.14.1"></a>
 ## [1.14.1](https://github.com/dxcli/generator-dxcli/compare/d1aa77d77422bc719873423148d9521cc15799dc...v1.14.1) (2018-01-20)
 
