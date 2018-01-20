@@ -1,3 +1,3 @@
-import Engine from '@dxcli/engine'
-
-export default class extends Engine {}
+import run from '@dxcli/engine'
+export {run}
+export default run

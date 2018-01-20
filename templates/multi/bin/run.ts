@@ -10,5 +10,4 @@ const dev = fs.existsSync(path.join(__dirname, '../tsconfig.json'))
 
 if (dev) require('ts-node/register')
 
-const cmd = undefault(require(`../${dev ? 'src' : 'lib'}`))
-cmd.run()
+undefault(require(`../${dev ? 'src' : 'lib'}`))()

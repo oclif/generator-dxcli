@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
-const cmd = require('..')
-cmd.run()
+const run = require('..')
+run()

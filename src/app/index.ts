@@ -325,7 +325,6 @@ class App extends Generator {
     if (this.mocha) {
       devDependencies.push(
         '@dxcli/dev-test',
-        'cross-env',
         'mocha',
         'nyc',
       )
