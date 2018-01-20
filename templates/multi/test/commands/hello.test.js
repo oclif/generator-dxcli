@@ -1,5 +1,4 @@
-const {expect, describe, it, output} = require('@dxcli/dev-test')
-const cmd = require('../../src')
+const {expect, describe, testCommand} = require('@dxcli/dev-test')
 
 describe('command', () => {
   testCommand(['hello'], {stdout: true}, ({stdout}) => {
