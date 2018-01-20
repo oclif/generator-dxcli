@@ -1,3 +1,11 @@
+<a name="1.14.4"></a>
+## [1.14.4](https://github.com/dxcli/generator-dxcli/compare/52aefe1f819a850bad087a94ed0cfde01b3a1447...v1.14.4) (2018-01-20)
+
+
+### Bug Fixes
+
+* added test.series ([f05226d](https://github.com/dxcli/generator-dxcli/commit/f05226d))
+
 <a name="1.14.3"></a>
 ## [1.14.3](https://github.com/dxcli/generator-dxcli/compare/dd5d6893046dac2e6bd4f77a99a8d99ba2231513...v1.14.3) (2018-01-20)
 
