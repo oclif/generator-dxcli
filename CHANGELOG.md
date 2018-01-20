@@ -1,3 +1,11 @@
+<a name="1.14.1"></a>
+## [1.14.1](https://github.com/dxcli/generator-dxcli/compare/d1aa77d77422bc719873423148d9521cc15799dc...v1.14.1) (2018-01-20)
+
+
+### Bug Fixes
+
+* tests in multi ([4ea97ca](https://github.com/dxcli/generator-dxcli/commit/4ea97ca))
+
 <a name="1.14.0"></a>
 # [1.14.0](https://github.com/dxcli/generator-dxcli/compare/597342a4e61a510edbfd06dda457efa471e5efc8...v1.14.0) (2018-01-20)
 
