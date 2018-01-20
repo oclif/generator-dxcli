@@ -45,6 +45,10 @@ module.exports = {
         script: concurrent.nps('lint', 'test.mocha'),
         description: 'lint and run all tests',
       },
+      series: {
+        script: series.nps('lint', 'test.mocha'),
+        description: 'lint and run all tests in series',
+      },
       mocha: {
         script: 'mocha "test/**/*.test.<%= _ext %>"',
         description: 'run all mocha tests',
