@@ -20,7 +20,7 @@ module.exports = {
       },
       ..._.zipObject(types, types.map(type => ({
         default: {
-          script: concurrent.nps(...['plain', 'semantic-release', 'mocha', 'typescript', 'everything'].map(t => `test.${type}.${t}`)),
+          script: series.nps(...['plain', 'semantic-release', 'mocha', 'typescript', 'everything'].map(t => `test.${type}.${t}`)),
           description: `test ${type} generator with all permutations`,
         },
         plain: {
