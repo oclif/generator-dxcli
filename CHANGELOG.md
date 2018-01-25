@@ -1,3 +1,11 @@
+<a name="1.15.2"></a>
+## [1.15.2](https://github.com/dxcli/generator-dxcli/compare/6335a5c9f32823109a9f968a4fd696c7827dccbc...v1.15.2) (2018-01-25)
+
+
+### Bug Fixes
+
+* updated typedoc script ([5ab21c5](https://github.com/dxcli/generator-dxcli/commit/5ab21c5))
+
 <a name="1.15.1"></a>
 ## [1.15.1](https://github.com/dxcli/generator-dxcli/compare/b9c044a6364b3e6a761d5a8b8fd46ad07a054234...v1.15.1) (2018-01-25)
 
