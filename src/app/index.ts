@@ -325,12 +325,9 @@ class App extends Generator {
     ]
     if (this.mocha) {
       if (this.type !== 'multi') devDependencies.push('@dxcli/engine')
-      if (this.type === 'base') {
-        devDependencies.push('chai')
-      } else {
-        devDependencies.push('@dxcli/dev-test')
-      }
+      if (this.type !== 'base') devDependencies.push('@dxcli/dev-test')
       devDependencies.push(
+        'chai',
         'mocha-junit-reporter',
         'mocha',
         'nyc',
