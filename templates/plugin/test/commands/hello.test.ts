@@ -1,10 +1,17 @@
-import {describe, expect, testCommand} from '@dxcli/dev-test'
+import {expect, test} from '@dxcli/dev-test'
 
 describe('command', () => {
-  testCommand(['hello'], {stdout: true}, ({stdout}) => {
+  test()
+  .stdout()
+  .command(['hello'])
+  .it('says hello', ({stdout}) => {
     expect(stdout).to.equal('hello world!\n')
   })
-  testCommand(['hello', '--name', 'jeff'], {stdout: true}, ({stdout}) => {
+
+  test()
+  .stdout()
+  .command(['hello', '--name', 'jeff'])
+  .it('says hello jeff', ({stdout}) => {
     expect(stdout).to.equal('hello jeff!\n')
   })
 })

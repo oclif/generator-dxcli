@@ -236,11 +236,10 @@ class App extends Generator {
           rootDirs: ['./src'],
           sourceMap: true,
           strict: true,
-          strictFunctionTypes: false, // breaks rxjs
           target: 'es2017',
         },
         include: [
-          'src/**/*'
+          './src/**/*'
         ]
       })
     }
@@ -284,7 +283,8 @@ class App extends Generator {
     }
     this.fs.writeJSON(this.destinationPath('./package.json'), sortPjson(this.pjson))
     this.fs.copyTpl(this.templatePath('editorconfig'), this.destinationPath('.editorconfig'), this)
-    this.fs.copyTpl(this.templatePath('scripts/circleci.ejs'), this.destinationPath('.circleci/test'), this)
+    this.fs.copyTpl(this.templatePath('scripts/greenkeeper'), this.destinationPath('.circleci/greenkeeper'), this)
+    this.fs.copyTpl(this.templatePath('scripts/setup_git'), this.destinationPath('.circleci/setup_git'), this)
     this.fs.copyTpl(this.templatePath('README.md.ejs'), this.destinationPath('README.md'), this)
     this.fs.copyTpl(this.templatePath('circle.yml.ejs'), this.destinationPath('.circleci/config.yml'), this)
     this.fs.copyTpl(this.templatePath('appveyor.yml'), this.destinationPath('appveyor.yml'), this)
@@ -324,6 +324,10 @@ class App extends Generator {
     ]
     if (this.mocha) {
       devDependencies.push(
+        '@dxcli/engine',
+        'mocha-junit-reporter',
+        'chai-as-promised',
+        'chai',
         '@dxcli/dev-test',
         'mocha',
         'nyc',
@@ -334,8 +338,18 @@ class App extends Generator {
         'typescript',
         '@dxcli/dev-tslint',
         '@types/node',
+        '@types/lodash',
+        '@types/read-pkg',
+        '@types/ansi-styles',
+        '@types/strip-ansi',
         'ts-node',
       )
+      if (this.mocha) {
+      devDependencies.push(
+        '@types/chai',
+        '@types/mocha',
+      )
+      }
     }
     if (this.semantic_release) {
       devDependencies.push('@dxcli/dev-semantic-release')
@@ -402,28 +416,32 @@ class App extends Generator {
     this.fs.copyTpl(this.templatePath(`single/bin/run.${this._ext}`), this.destinationPath('bin/run'), this)
     this.fs.copyTpl(this.templatePath(`single/src/index.${this._ext}`), this.destinationPath(`src/index.${this._ext}`), this)
     if (this.mocha) {
-      this.fs.copyTpl(this.templatePath(`single/test/integration/index.test.${this._ext}`), this.destinationPath(`test/integration/index.test.${this._ext}`), this)
+      this.fs.copyTpl(this.templatePath(`single/test/index.test.${this._ext}`), this.destinationPath(`test/index.test.${this._ext}`), this)
     }
   }
 
   private _writeMulti() {
     if (!this.fromScratch) return
     this.fs.copyTpl(this.templatePath(`multi/bin/run.${this._ext}`), this.destinationPath('bin/run'), this)
-    this.fs.copyTpl(this.templatePath(`multi/src/index.${this._ext}`), this.destinationPath(`src/index.${this._ext}`), this)
-    this.fs.copyTpl(this.templatePath(`multi/src/commands/hello.${this._ext}`), this.destinationPath(`src/commands/hello.${this._ext}`), this)
+    this.fs.copyTpl(this.templatePath(`plugin/src/index.${this._ext}`), this.destinationPath(`src/index.${this._ext}`), this)
+    this.fs.copyTpl(this.templatePath(`plugin/src/commands/hello.${this._ext}`), this.destinationPath(`src/commands/hello.${this._ext}`), this)
+    this.fs.copyTpl(this.templatePath(`plugin/src/hooks/init.${this._ext}`), this.destinationPath(`src/hooks/init.${this._ext}`), this)
     if (this.mocha) {
-      this.fs.copyTpl(this.templatePath(`multi/test/commands/hello.test.${this._ext}`), this.destinationPath(`test/commands/hello.test.${this._ext}`), this)
+      this.fs.copyTpl(this.templatePath(`plugin/test/commands/hello.test.${this._ext}`), this.destinationPath(`test/commands/hello.test.${this._ext}`), this)
+      this.fs.copyTpl(this.templatePath(`plugin/test/hooks/init.test.${this._ext}`), this.destinationPath(`test/hooks/init.test.${this._ext}`), this)
     }
   }
 
   private _writePlugin() {
     if (!this.fromScratch) return
     this.fs.copyTpl(this.templatePath(`plugin/src/commands/hello.${this._ext}`), this.destinationPath(`src/commands/hello.${this._ext}`), this)
+    this.fs.copyTpl(this.templatePath(`plugin/src/hooks/init.${this._ext}`), this.destinationPath(`src/hooks/init.${this._ext}`), this)
     if (this.ts) {
       this.fs.copyTpl(this.templatePath('plugin/src/index.ts'), this.destinationPath('src/index.ts'), this)
     }
     if (this.mocha) {
       this.fs.copyTpl(this.templatePath(`plugin/test/commands/hello.test.${this._ext}`), this.destinationPath(`test/commands/hello.test.${this._ext}`), this)
+      this.fs.copyTpl(this.templatePath(`plugin/test/hooks/init.test.${this._ext}`), this.destinationPath(`test/hooks/init.test.${this._ext}`), this)
     }
   }
 
@@ -431,7 +449,7 @@ class App extends Generator {
     if (!this.fromScratch) return
     this.fs.copyTpl(this.templatePath(`base/src/index.${this._ext}`), this.destinationPath(`src/index.${this._ext}`), this)
     if (this.mocha) {
-      this.fs.copyTpl(this.templatePath(`base/test/integration/index.test.${this._ext}`), this.destinationPath(`test/integration/index.test.${this._ext}`), this)
+      this.fs.copyTpl(this.templatePath(`base/test/index.test.${this._ext}`), this.destinationPath(`test/index.test.${this._ext}`), this)
     }
   }
 }
