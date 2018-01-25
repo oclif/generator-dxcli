@@ -1,4 +1,4 @@
-import {describe, expect, it} from '@dxcli/dev-test'
+import {expect} from 'chai'
 
 import {add} from '../src'
 

@@ -1,13 +1,18 @@
-const {expect, describe, it, output} = require('@dxcli/dev-test')
+const {expect, test} = require('@dxcli/dev-test')
 const cmd = require('..')
 
-describe.stdout('command', () => {
-  it('says hello world!', async () => {
-    await cmd.run([])
-    expect(output.stdout).to.equal('hello world!\n')
-  })
-  it('says hello jeff!', async () => {
-    await cmd.run(['--name', 'jeff'])
-    expect(output.stdout).to.equal('hello jeff!\n')
-  })
+describe('command', () => {
+  test()
+    .stdout()
+    .it('says hello world!', async output => {
+      await cmd.run([])
+      expect(output.stdout).to.equal('hello world!\n')
+    })
+
+  test()
+    .stdout()
+    .it('says hello jeff!', async output => {
+      await cmd.run(['--name', 'jeff'])
+      expect(output.stdout).to.equal('hello jeff!\n')
+    })
 })

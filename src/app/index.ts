@@ -324,12 +324,14 @@ class App extends Generator {
       'eslint',
     ]
     if (this.mocha) {
+      if (this.type !== 'multi') devDependencies.push('@dxcli/engine')
+      if (this.type === 'base') {
+        devDependencies.push('chai')
+      } else {
+        devDependencies.push('@dxcli/dev-test')
+      }
       devDependencies.push(
-        '@dxcli/engine',
         'mocha-junit-reporter',
-        'chai-as-promised',
-        'chai',
-        '@dxcli/dev-test',
         'mocha',
         'nyc',
         '@dxcli/dev-nyc-config',
@@ -339,6 +341,7 @@ class App extends Generator {
       devDependencies.push(
         'typescript',
         '@dxcli/dev-tslint',
+        '@dxcli/config',
         '@types/node',
         '@types/lodash',
         '@types/read-pkg',
@@ -425,7 +428,7 @@ class App extends Generator {
   private _writeMulti() {
     if (!this.fromScratch) return
     this.fs.copyTpl(this.templatePath(`multi/bin/run.${this._ext}`), this.destinationPath('bin/run'), this)
-    this.fs.copyTpl(this.templatePath(`plugin/src/index.${this._ext}`), this.destinationPath(`src/index.${this._ext}`), this)
+    this.fs.copyTpl(this.templatePath(`multi/src/index.${this._ext}`), this.destinationPath(`src/index.${this._ext}`), this)
     this.fs.copyTpl(this.templatePath(`plugin/src/commands/hello.${this._ext}`), this.destinationPath(`src/commands/hello.${this._ext}`), this)
     this.fs.copyTpl(this.templatePath(`plugin/src/hooks/init.${this._ext}`), this.destinationPath(`src/hooks/init.${this._ext}`), this)
     if (this.mocha) {

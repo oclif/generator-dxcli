@@ -1,13 +1,18 @@
-import {describe, expect, it, output} from '@dxcli/dev-test'
+import {expect, test} from '@dxcli/dev-test'
 
 import cmd from '../src'
 
-describe.stdout('command', () => {
-  it('says hello world!', async () => {
+describe('command', () => {
+  test()
+  .stdout()
+  .it('says hello world!', async output => {
     await cmd.run([])
     expect(output.stdout).to.equal('hello world!\n')
   })
-  it('says hello jeff!', async () => {
+
+  test()
+  .stdout()
+  .it('says hello jeff!', async output => {
     await cmd.run(['--name', 'jeff'])
     expect(output.stdout).to.equal('hello jeff!\n')
   })
