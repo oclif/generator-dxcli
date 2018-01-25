@@ -340,6 +340,7 @@ class App extends Generator {
         '@dxcli/dev-tslint',
         '@dxcli/config',
         '@types/node',
+        '@types/nock',
         '@types/lodash',
         '@types/read-pkg',
         '@types/ansi-styles',

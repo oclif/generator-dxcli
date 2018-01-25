@@ -5,15 +5,13 @@ import cmd from '../src'
 describe('command', () => {
   test()
   .stdout()
-  .it('says hello world!', async output => {
-    await cmd.run([])
-    expect(output.stdout).to.equal('hello world!\n')
-  })
+  .run(() => cmd.run([]))
+  .run(output => expect(output.stdout).to.equal('hello world!\n'))
+  .end('says hello world!')
 
   test()
   .stdout()
-  .it('says hello jeff!', async output => {
-    await cmd.run(['--name', 'jeff'])
-    expect(output.stdout).to.equal('hello jeff!\n')
-  })
+  .run(() => cmd.run([]))
+  .run(output => expect(output.stdout).to.equal('hello jeff!\n'))
+  .it('says hello jeff!')
 })

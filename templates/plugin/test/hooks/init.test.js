@@ -4,7 +4,6 @@ describe('hooks', () => {
   test()
     .stdout()
     .hook('init', {id: 'mycommand'})
-    .it('shows a message', ({stdout}) => {
-      expect(stdout).to.contain('example hook running mycommand')
-    })
+    .run(output => expect(output.stdout).to.contain('example hook running mycommand'))
+    .end('shows a message')
 })
