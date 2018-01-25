@@ -1,3 +1,11 @@
+<a name="1.15.1"></a>
+## [1.15.1](https://github.com/dxcli/generator-dxcli/compare/b9c044a6364b3e6a761d5a8b8fd46ad07a054234...v1.15.1) (2018-01-25)
+
+
+### Bug Fixes
+
+* updated tests ([6335a5c](https://github.com/dxcli/generator-dxcli/commit/6335a5c))
+
 <a name="1.15.0"></a>
 # [1.15.0](https://github.com/dxcli/generator-dxcli/compare/f05226d9a27c6f0080932ec58b9c5c1169d2ff5f...v1.15.0) (2018-01-25)
 
