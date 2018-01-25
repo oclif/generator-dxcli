@@ -11,7 +11,7 @@ describe('command', () => {
 
   test()
   .stdout()
-  .run(() => cmd.run([]))
+  .run(() => cmd.run(['--name', 'jeff']))
   .run(output => expect(output.stdout).to.equal('hello jeff!\n'))
   .end('says hello jeff!')
 })
