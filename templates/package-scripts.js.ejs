@@ -103,12 +103,13 @@ module.exports = {
 <%_ } _%>
       },
 <%_ if (semantic_release) { _%>
+      typedoc: hidden('typedoc --out /tmp/docs src/index.ts --excludeNotExported --mode file'),
       release: {
         default: hidden(series.nps(...release)),
         'semantic-release': hidden('semantic-release -e @dxcli/dev-semantic-release'),
         typedoc: hidden(series(
           'git clone -b gh-pages $CIRCLE_REPOSITORY_URL gh-pages',
-          'typedoc --out /tmp/docs src/index.ts --excludeNotExported --mode file',
+          'nps ci.typedoc',
           'rm -rf ./gh-pages/*',
           'mv /tmp/docs/* ./gh-pages',
           'cd gh-pages && git add . && git commit -m "updates from $CIRCLE_SHA1 [skip ci]" && git push',
