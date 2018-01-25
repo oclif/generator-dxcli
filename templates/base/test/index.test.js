@@ -1,5 +1,5 @@
 const {expect, describe, it} = require('@dxcli/dev-test')
-const {add} = require('../../src')
+const {add} = require('../src')
 
 describe('add', () => {
   it('1+2=3', () => {

@@ -24,7 +24,7 @@ module.exports = {
           description: `test ${type} generator with all permutations`,
         },
         plain: {
-          script: `node ./scripts/test ${type}`,
+          script: `node ./scripts/test ${type} --plain`,
           description: `test ${type} generator with no extra opts`,
         },
         'semantic-release': {
@@ -40,7 +40,7 @@ module.exports = {
           description: `test ${type} generator with typescript`,
         },
         everything: {
-          script: `node ./scripts/test ${type} --typescript --semantic-release --mocha`,
+          script: `node ./scripts/test ${type} --everything`,
           description: `test ${type} generator with everything enabled`,
         },
       }))),

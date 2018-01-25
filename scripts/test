@@ -10,9 +10,9 @@ const path = require('path')
 class CLI extends Command {
   async run() {
     process.env.DXCLI_CREATE_DEFAULTS = '1'
-    process.env.DXCLI_CREATE_TYPESCRIPT = this.flags.typescript && '1'
-    process.env.DXCLI_CREATE_MOCHA = this.flags.mocha && '1'
-    process.env.DXCLI_CREATE_SEMANTIC_RELEASE = this.flags['semantic-release'] && '1'
+    process.env.DXCLI_CREATE_TYPESCRIPT = (this.flags.everything || this.flags.typescript) && '1'
+    process.env.DXCLI_CREATE_MOCHA = (this.flags.everything || this.flags.mocha) && '1'
+    process.env.DXCLI_CREATE_SEMANTIC_RELEASE = (this.flags.everything || this.flags['semantic-release']) && '1'
 
     sh.set('-ev')
     const {type} = this.args
@@ -49,6 +49,8 @@ CLI.flags = {
   typescript: flags.boolean(),
   mocha: flags.boolean(),
   'semantic-release': flags.boolean(),
+  everything: flags.boolean(),
+  plain: flags.boolean(),
 }
 
 CLI.run()

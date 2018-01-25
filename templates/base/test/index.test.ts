@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@dxcli/dev-test'
 
-import {add} from '../../src'
+import {add} from '../src'
 
 describe('add', () => {
   it('1+2=3', () => {

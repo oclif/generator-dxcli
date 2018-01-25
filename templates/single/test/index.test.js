@@ -1,6 +1,5 @@
-import {describe, expect, it, output} from '@dxcli/dev-test'
-
-import cmd from '../../src'
+const {expect, describe, it, output} = require('@dxcli/dev-test')
+const cmd = require('..')
 
 describe.stdout('command', () => {
   it('says hello world!', async () => {
