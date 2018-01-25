@@ -1,3 +1,11 @@
+<a name="1.15.0"></a>
+# [1.15.0](https://github.com/dxcli/generator-dxcli/compare/f05226d9a27c6f0080932ec58b9c5c1169d2ff5f...v1.15.0) (2018-01-25)
+
+
+### Features
+
+* added plugin generator ([6cdbed4](https://github.com/dxcli/generator-dxcli/commit/6cdbed4))
+
 <a name="1.14.4"></a>
 ## [1.14.4](https://github.com/dxcli/generator-dxcli/compare/52aefe1f819a850bad087a94ed0cfde01b3a1447...v1.14.4) (2018-01-20)
 
