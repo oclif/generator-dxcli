@@ -1,15 +1,15 @@
 const {expect, test} = require('@dxcli/dev-test')
 
 describe('command', () => {
-  test()
+  test
     .stdout()
     .command(['hello'])
-    .run(output => expect(output.stdout).to.contain('hello world!'))
-    .end('says hello')
+    .do(output => expect(output.stdout).to.contain('hello world!'))
+    .it('says hello')
 
-  test()
+  test
     .stdout()
     .command(['hello', '--name', 'jeff'])
-    .run(output => expect(output.stdout).to.contain('hello jeff!'))
-    .end('says hello jeff')
+    .do(output => expect(output.stdout).to.contain('hello jeff!'))
+    .it('says hello jeff')
 })
