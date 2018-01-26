@@ -1,3 +1,12 @@
+<a name="1.15.3"></a>
+## [1.15.3](https://github.com/dxcli/generator-dxcli/compare/5ab21c5de15ff39393b61b4a68dd4fe224f805e3...v1.15.3) (2018-01-26)
+
+
+### Bug Fixes
+
+* fixed test ([76ed243](https://github.com/dxcli/generator-dxcli/commit/76ed243))
+* updated dev-test ([265acdf](https://github.com/dxcli/generator-dxcli/commit/265acdf))
+
 <a name="1.15.2"></a>
 ## [1.15.2](https://github.com/dxcli/generator-dxcli/compare/6335a5c9f32823109a9f968a4fd696c7827dccbc...v1.15.2) (2018-01-25)
 
