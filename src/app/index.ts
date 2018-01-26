@@ -321,20 +321,8 @@ class App extends Generator {
         'typescript',
         '@dxcli/dev-tslint',
         '@dxcli/config',
-        '@types/node',
-        '@types/nock',
-        '@types/lodash',
-        '@types/read-pkg',
-        '@types/ansi-styles',
-        '@types/strip-ansi',
         'ts-node',
       )
-      if (this.mocha) {
-      devDependencies.push(
-        '@types/chai',
-        '@types/mocha',
-      )
-      }
     }
     if (this.semantic_release) {
       devDependencies.push('@dxcli/dev-semantic-release')
@@ -346,7 +334,6 @@ class App extends Generator {
       )
     }
     if (['plugin', 'single', 'multi'].includes(this.type)) {
-        devDependencies.push('@types/read-pkg')
         dependencies.push(
           '@dxcli/command',
           'cli-ux',
