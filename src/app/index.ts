@@ -224,24 +224,6 @@ class App extends Generator {
     }
     if (this.ts) {
       this.pjson.scripts.prepare = defaults.scripts.prepare || 'nps build'
-      this.tsconfig = this.fs.readJSON(this.destinationPath('tsconfig.json'), {
-        compilerOptions: {
-          declaration: true,
-          forceConsistentCasingInFileNames: true,
-          importHelpers: true,
-          module: 'commonjs',
-          noUnusedLocals: true,
-          noUnusedParameters: true,
-          outDir: './lib',
-          rootDirs: ['./src'],
-          sourceMap: true,
-          strict: true,
-          target: 'es2017',
-        },
-        include: [
-          './src/**/*'
-        ]
-      })
     }
     if (this.semantic_release) {
       this.pjson.scripts.commitmsg = defaults.scripts.commitmsg || 'dxcli-dev-commitmsg'
@@ -270,7 +252,7 @@ class App extends Generator {
 
     if (this.ts) {
       this.fs.copyTpl(this.templatePath('tslint.json'), this.destinationPath('tslint.json'), this)
-      this.fs.writeJSON(this.destinationPath('tsconfig.json'), this.tsconfig)
+      this.fs.copyTpl(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'), this)
       if (this.mocha) {
         this.fs.copyTpl(this.templatePath('test/tsconfig.json'), this.destinationPath('test/tsconfig.json'), this)
       }
