@@ -252,6 +252,7 @@ class App extends Generator {
 
     if (this.ts) {
       this.fs.copyTpl(this.templatePath('tslint.json'), this.destinationPath('tslint.json'), this)
+      this.tsconfig = this.fs.readJSON(this.destinationPath('tsconfig.json'), {compilerOptions: {outDir: './lib'}})
       this.fs.copyTpl(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'), this)
       if (this.mocha) {
         this.fs.copyTpl(this.templatePath('test/tsconfig.json'), this.destinationPath('test/tsconfig.json'), this)
@@ -307,8 +308,9 @@ class App extends Generator {
     ]
     if (this.mocha) {
       if (this.type !== 'multi') devDependencies.push('@dxcli/engine')
-      if (this.type !== 'base') devDependencies.push('@dxcli/dev-test')
       devDependencies.push(
+        '@dxcli/dev-test',
+        '@types/node-notifier',
         'chai',
         'mocha-junit-reporter',
         'mocha',
